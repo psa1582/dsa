@@ -1,0 +1,45 @@
+{
+  "block_size": 64,
+  "elapsed_seconds": 7.406525868922472,
+  "gamma_scale": {
+    "11": 1.6083984375,
+    "14": 1.75,
+    "17": 2.359375,
+    "2": 1.7763671875,
+    "21": 2.0859375,
+    "25": 1.45703125,
+    "5": 1.80859375,
+    "8": 2.0244140625
+  },
+  "k": 2048,
+  "policies": [
+    {
+      "config_id": "streak2_bucket8_m-0.75_age2",
+      "family": "streak2_bucket8",
+      "multiplier": -0.75,
+      "overrides": {
+        "age_cap": 2
+      },
+      "repair": "age2",
+      "selection_role": "Safe"
+    },
+    {
+      "config_id": "streak2_bucket8_m-0.75_refresh8",
+      "family": "streak2_bucket8",
+      "multiplier": -0.75,
+      "overrides": {
+        "refresh_interval": 8
+      },
+      "repair": "refresh8",
+      "selection_role": "Balanced"
+    },
+    {
+      "config_id": "streak2_bucket8_m0",
+      "family": "streak2_bucket8",
+      "multiplier": 0.0,
+      "repair": "none",
+      "selection_role": "Aggressive"
+    }
+  ],
+  "selection_basis": "Phase-A held-out Pareto selection; policy parameters remain validation-calibrated or prespecified repair values"
+}

@@ -1,0 +1,112 @@
+{
+  "block_size": 64,
+  "checkpoint_sha256": {
+    "layer_02.safetensors": "648df308a12ed54ad986e0a65669f2917757d1ef7bc9af18fa6e671ead2f2620",
+    "layer_05.safetensors": "7ae93a6c5ff844a03661493eb20b419db4c905c6822ed4710fc329195848c366",
+    "layer_08.safetensors": "d5bd1895c1e0182856730c63899adc9eb7221fd81c0d7dc357715ab5c96c2895",
+    "layer_11.safetensors": "300e84da81b2ab5923ac21d3d523e769e13e8847da4e243cd10cd9844c631030",
+    "layer_14.safetensors": "db6beec6065a6f02611d4a1f4ff5b0ea42b9c26fe2b64021658f42ff9b9f4a72",
+    "layer_17.safetensors": "9b973e4ac23f6cff0600ee2252aae4924d11a38102d62fa60324263591ded559",
+    "layer_21.safetensors": "181f96ae63eb4d89db672e81b60e1ef153a5005bc1a7ba56bc5eac7650732007",
+    "layer_25.safetensors": "41b2d183df4d6dc48006882d671a7cb22fda3ea30b48a00f8fbfb01f3a8f21c8"
+  },
+  "commands": {
+    "phase_a": "scripts/run_approx_phase_a.py --validation-roots artifacts/pilot/indexers_1000/traces --heldout-roots artifacts/pilot/scores_a/traces artifacts/pilot/scores_b/traces --config configs/approx_pilot.yaml --output artifacts/approx_pilot/phase_a --workers 16",
+    "phase_b": "evaluate_mla_output.py --max-transitions 64 (144 traces)",
+    "phase_c": "evaluate_teacher_forced.py --contexts 8192 16384 32768 --steps 64 --layers 2 5 8 11 14 17 21 25"
+  },
+  "cuda": "12.8",
+  "early_stop": {
+    "approx_software_timing": true,
+    "closed_loop": true,
+    "reason": "Phase-B actual MLA output error exceeded pilot gate",
+    "task_benchmarks": true
+  },
+  "git_commit": "a73eb97a",
+  "gpu_sku": [
+    "NVIDIA L40S",
+    "NVIDIA L40S"
+  ],
+  "heldout_prompt_ids": [
+    "code_heldout_3",
+    "code_heldout_4",
+    "code_heldout_5",
+    "text_heldout_26493",
+    "text_heldout_27454",
+    "text_heldout_28444"
+  ],
+  "heldout_trace_count": 144,
+  "heldout_transitions": 18288,
+  "k": 2048,
+  "model": "deepseek-ai/DeepSeek-V2-Lite-Chat",
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "phase_a_elapsed_seconds": 135.07494120998308,
+  "phase_b_mla_elapsed_seconds": 246.54708024021238,
+  "phase_c_measured_decode_gpu_hours_two_visible_gpus_excluding_prefill": 0.4149966361014069,
+  "phase_c_measured_decode_seconds_excluding_prefill": 746.9939449825324,
+  "policy_parameters": [
+    {
+      "config_id": "streak2_bucket8_m-0.75_age2",
+      "family": "streak2_bucket8",
+      "multiplier": -0.75,
+      "overrides": {
+        "age_cap": 2
+      },
+      "repair": "age2",
+      "selection_role": "Safe"
+    },
+    {
+      "config_id": "streak2_bucket8_m-0.75_refresh8",
+      "family": "streak2_bucket8",
+      "multiplier": -0.75,
+      "overrides": {
+        "refresh_interval": 8
+      },
+      "repair": "refresh8",
+      "selection_role": "Balanced"
+    },
+    {
+      "config_id": "streak2_bucket8_m0",
+      "family": "streak2_bucket8",
+      "multiplier": 0.0,
+      "repair": "none",
+      "selection_role": "Aggressive"
+    }
+  ],
+  "protected_gpu_ids": [
+    2,
+    3
+  ],
+  "python": "3.12.12",
+  "random_seed": 1582,
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "score_trace_bytes": 571125662,
+  "selected_layers": [
+    2,
+    5,
+    8,
+    11,
+    14,
+    17,
+    21,
+    25
+  ],
+  "sidecar": {
+    "dtype": "BF16 forward / FP32 master",
+    "head_dim": 128,
+    "heads": 64
+  },
+  "torch": "2.9.1+cu128",
+  "transformers": "4.57.3",
+  "unit_tests": "16 passed",
+  "validation_prompt_ids": [
+    "code_validation_2",
+    "text_validation_2544",
+    "text_validation_25773"
+  ],
+  "validation_trace_count": 24,
+  "visible_physical_gpu_ids": [
+    0,
+    1
+  ]
+}

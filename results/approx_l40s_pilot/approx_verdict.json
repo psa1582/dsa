@@ -1,0 +1,54 @@
+{
+  "closed_loop_status": "skipped_due_to_phase_b_gate",
+  "decision_rule": "No candidate simultaneously reached >=20% held-out own-trajectory reduction and the Phase-B actual-output gate; Balanced relative-L2 p95 was >1%.",
+  "numbers": {
+    "Aggressive": {
+      "logit_kl_mean": 0.0053568652621464,
+      "mla_cosine_median": 0.9999819397926332,
+      "mla_cosine_p5": 0.9949874579906464,
+      "mla_relative_l2_p95": 0.10086165741086,
+      "net_bf16_bytes_reduction_median": 0.4095107991983993,
+      "ppl_delta": -0.0025202778992507,
+      "qk_reduction_mean": 0.3729894183653142,
+      "qk_reduction_median": 0.4099998475656825,
+      "recall_at_2048": 0.9600893890033764,
+      "teacher_mass_ratio_mean": 0.9956047413719418,
+      "top128_recall": 0.995807103701881,
+      "top1_agreement": 0.9730902777777778,
+      "top512_recall": 0.988073847946741
+    },
+    "Balanced": {
+      "logit_kl_mean": 0.0043097179574417,
+      "mla_cosine_median": 0.9999940395355223,
+      "mla_cosine_p5": 0.9978767931461334,
+      "mla_relative_l2_p95": 0.0660649351775646,
+      "net_bf16_bytes_reduction_median": 0.2841371198834891,
+      "ppl_delta": -0.0046933717801142,
+      "qk_reduction_mean": 0.279870533658014,
+      "qk_reduction_median": 0.284626397656644,
+      "recall_at_2048": 0.982233830115718,
+      "teacher_mass_ratio_mean": 0.9978034578312768,
+      "top128_recall": 0.9990443699420384,
+      "top1_agreement": 0.9765625,
+      "top512_recall": 0.9964268535036636
+    },
+    "Safe": {
+      "logit_kl_mean": 0.0036863069763048,
+      "mla_cosine_median": 0.9999958276748656,
+      "mla_cosine_p5": 0.999141737818718,
+      "mla_relative_l2_p95": 0.0415529422461986,
+      "net_bf16_bytes_reduction_median": 0.1705553195001002,
+      "ppl_delta": -0.0003332145892845,
+      "qk_reduction_mean": 0.1961638333823749,
+      "qk_reduction_median": 0.1710450391834869,
+      "recall_at_2048": 0.990336954645806,
+      "teacher_mass_ratio_mean": 0.9988248439189956,
+      "top128_recall": 0.9996462844488188,
+      "top1_agreement": 0.9756944444444444,
+      "top512_recall": 0.99841949382792
+    }
+  },
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "task_status": "skipped_due_to_phase_b_gate",
+  "verdict": "NO-GO"
+}

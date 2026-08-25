@@ -1,0 +1,6 @@
+method,status,context_length,iterations,k,key_bytes_bf16,latency_ms_mean,latency_ms_median,latency_ms_p5,latency_ms_p95,warmups
+Full dense sidecar + torch.topk,reused_legacy_50_iterations,8192.0,50.0,2048.0,2097152.0,0.20856975577771664,0.20249281078577042,0.20034797489643097,0.21658791229128838,10.0
+Full dense sidecar + torch.topk,reused_legacy_50_iterations,16384.0,50.0,2048.0,4194304.0,0.23175237700343132,0.2263179048895836,0.22405805066227913,0.24076830595731735,10.0
+Full dense sidecar + torch.topk,reused_legacy_50_iterations,32768.0,50.0,2048.0,8388608.0,0.23034398443996906,0.2284180372953415,0.22716820240020752,0.23806793615221977,10.0
+Static temporal filter,skipped_due_to_phase_b_gate,,,,,,,,,
+Bucket hot-first approximate,skipped_due_to_phase_b_gate,,,,,,,,,
