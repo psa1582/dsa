@@ -341,7 +341,8 @@ def main() -> None:
     pareto = aggregate(heldout_rows)
     pareto.to_csv(args.output / "policy_pareto.csv", index=False)
     rank_group = heldout_rows.groupby(
-        ["config_id", "history_mode", "layer", "context_length", "workload"], as_index=False
+        ["config_id", "history_mode", "layer", "base_context_length", "workload"],
+        as_index=False,
     ).agg(
         qk_reduction=("qk_reduction", "median"),
         recall=("recall", "mean"),

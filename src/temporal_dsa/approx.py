@@ -393,6 +393,7 @@ def replay_approx_trace(
                 "layer": trace.layer,
                 "workload": trace.workload,
                 "prompt_id": trace.prompt_id,
+                "base_context_length": int(trace.lengths[0]) - 1,
             }
         )
         rows.append(metrics)
