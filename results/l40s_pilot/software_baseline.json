@@ -1,0 +1,45 @@
+{
+  "benchmark": "dense BF16 research-sidecar score plus torch.topk; cached keys",
+  "capture": "artifacts/pilot/trace_capture_32k/text_heldout_26493/layer_02.pt",
+  "checkpoint": "artifacts/pilot/indexers_1000/checkpoints/layer_02.safetensors",
+  "cuda": "12.8",
+  "gpu": "NVIDIA L40S",
+  "not_a_sparse_kernel": true,
+  "python": "3.12.12",
+  "rows": [
+    {
+      "context_length": 8192,
+      "iterations": 50,
+      "k": 2048,
+      "key_bytes_bf16": 2097152,
+      "latency_ms_mean": 0.20856975577771664,
+      "latency_ms_median": 0.20249281078577042,
+      "latency_ms_p5": 0.20034797489643097,
+      "latency_ms_p95": 0.21658791229128838,
+      "warmups": 10
+    },
+    {
+      "context_length": 16384,
+      "iterations": 50,
+      "k": 2048,
+      "key_bytes_bf16": 4194304,
+      "latency_ms_mean": 0.23175237700343132,
+      "latency_ms_median": 0.2263179048895836,
+      "latency_ms_p5": 0.22405805066227913,
+      "latency_ms_p95": 0.24076830595731735,
+      "warmups": 10
+    },
+    {
+      "context_length": 32768,
+      "iterations": 50,
+      "k": 2048,
+      "key_bytes_bf16": 8388608,
+      "latency_ms_mean": 0.23034398443996906,
+      "latency_ms_median": 0.2284180372953415,
+      "latency_ms_p5": 0.22716820240020752,
+      "latency_ms_p95": 0.23806793615221977,
+      "warmups": 10
+    }
+  ],
+  "torch": "2.9.1+cu128"
+}

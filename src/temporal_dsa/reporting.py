@@ -125,8 +125,25 @@ def create_required_graphs(
     names.append("09_pruning_recall_frontier.png"); _save(fig, output, names[-1])
 
     fig, ax = plt.subplots()
-    comparison = replay.groupby(["method", "scan_order"])[["qk_reduction", "net_byte_reduction"]].median().sort_values("qk_reduction")
-    labels = [f"{a}\n{b}" for a, b in comparison.index]
+    calibrated = replay[
+        (replay["gamma_sigma"] == -1.0)
+        | replay["method"].isin(["full", "oracle"])
+        | (
+            (replay["gamma_sigma"] == 1.0)
+            & (
+                (replay["method"] == "static")
+                | (
+                    (replay["method"] == "dynamic")
+                    & (replay["scan_order"] == "previous_hot")
+                )
+            )
+        )
+    ]
+    comparison = calibrated.groupby(["method", "scan_order", "gamma_sigma"])[["qk_reduction", "net_byte_reduction"]].median().sort_values("qk_reduction")
+    labels = [
+        f"{method}/{order}\n{'val-max' if gamma == -1 else f'{gamma:g}sigma'}"
+        for method, order, gamma in comparison.index
+    ]
     x = np.arange(len(labels)); width = 0.4
     ax.bar(x-width/2, comparison["qk_reduction"], width, label="QK")
     ax.bar(x+width/2, comparison["net_byte_reduction"], width, label="Net bytes")

@@ -1,0 +1,314 @@
+{
+  "diagnostics": [
+    {
+      "block_size": 16,
+      "layer": 2,
+      "observations": 97236,
+      "positive_max": 6.7138671875,
+      "positive_p99": 2.8408203125,
+      "positive_p999": 4.024931640625027
+    },
+    {
+      "block_size": 32,
+      "layer": 2,
+      "observations": 48666,
+      "positive_max": 5.380859375,
+      "positive_p99": 2.6952728271484374,
+      "positive_p999": 3.718501281738342
+    },
+    {
+      "block_size": 64,
+      "layer": 2,
+      "observations": 24381,
+      "positive_max": 4.8828125,
+      "positive_p99": 2.6384765625000037,
+      "positive_p999": 3.602050781250064
+    },
+    {
+      "block_size": 128,
+      "layer": 2,
+      "observations": 12285,
+      "positive_max": 4.8828125,
+      "positive_p99": 2.5982812499999994,
+      "positive_p999": 3.487816284179706
+    },
+    {
+      "block_size": 16,
+      "layer": 5,
+      "observations": 97236,
+      "positive_max": 6.2109375,
+      "positive_p99": 2.845703125,
+      "positive_p999": 4.416025390625464
+    },
+    {
+      "block_size": 32,
+      "layer": 5,
+      "observations": 48666,
+      "positive_max": 5.58984375,
+      "positive_p99": 2.7421875,
+      "positive_p999": 4.07421875
+    },
+    {
+      "block_size": 64,
+      "layer": 5,
+      "observations": 24381,
+      "positive_max": 5.15234375,
+      "positive_p99": 2.6015625,
+      "positive_p999": 3.8110156250000102
+    },
+    {
+      "block_size": 128,
+      "layer": 5,
+      "observations": 12285,
+      "positive_max": 4.744140625,
+      "positive_p99": 2.4830468749999994,
+      "positive_p999": 3.6673281250006013
+    },
+    {
+      "block_size": 16,
+      "layer": 8,
+      "observations": 97236,
+      "positive_max": 6.998046875,
+      "positive_p99": 3.655224609374983,
+      "positive_p999": 5.274931640625027
+    },
+    {
+      "block_size": 32,
+      "layer": 8,
+      "observations": 48666,
+      "positive_max": 6.7060546875,
+      "positive_p99": 3.46875,
+      "positive_p999": 5.126308593750025
+    },
+    {
+      "block_size": 64,
+      "layer": 8,
+      "observations": 24381,
+      "positive_max": 6.07470703125,
+      "positive_p99": 3.250781250000003,
+      "positive_p999": 4.989863281250003
+    },
+    {
+      "block_size": 128,
+      "layer": 8,
+      "observations": 12285,
+      "positive_max": 5.6015625,
+      "positive_p99": 3.113515624999998,
+      "positive_p999": 4.749429687500161
+    },
+    {
+      "block_size": 16,
+      "layer": 11,
+      "observations": 97236,
+      "positive_max": 5.69921875,
+      "positive_p99": 2.9309570312499886,
+      "positive_p999": 4.2734375
+    },
+    {
+      "block_size": 32,
+      "layer": 11,
+      "observations": 48666,
+      "positive_max": 5.34765625,
+      "positive_p99": 2.783886718749997,
+      "positive_p999": 4.10027343750005
+    },
+    {
+      "block_size": 64,
+      "layer": 11,
+      "observations": 24381,
+      "positive_max": 5.34765625,
+      "positive_p99": 2.614086914062503,
+      "positive_p999": 3.8673828125000256
+    },
+    {
+      "block_size": 128,
+      "layer": 11,
+      "observations": 12285,
+      "positive_max": 4.408203125,
+      "positive_p99": 2.466093749999999,
+      "positive_p999": 3.469351562500055
+    },
+    {
+      "block_size": 16,
+      "layer": 14,
+      "observations": 97236,
+      "positive_max": 7.8828125,
+      "positive_p99": 3.3531738281249943,
+      "positive_p999": 4.880400390625027
+    },
+    {
+      "block_size": 32,
+      "layer": 14,
+      "observations": 48666,
+      "positive_max": 6.634765625,
+      "positive_p99": 3.1715576171874993,
+      "positive_p999": 4.5840136718751125
+    },
+    {
+      "block_size": 64,
+      "layer": 14,
+      "observations": 24381,
+      "positive_max": 6.125,
+      "positive_p99": 2.9554687500000014,
+      "positive_p999": 4.4208593750000205
+    },
+    {
+      "block_size": 128,
+      "layer": 14,
+      "observations": 12285,
+      "positive_max": 5.5390625,
+      "positive_p99": 2.7644531249999993,
+      "positive_p999": 4.039640625000025
+    },
+    {
+      "block_size": 16,
+      "layer": 17,
+      "observations": 97236,
+      "positive_max": 7.05859375,
+      "positive_p99": 3.9700195312499886,
+      "positive_p999": 5.323300781250055
+    },
+    {
+      "block_size": 32,
+      "layer": 17,
+      "observations": 48666,
+      "positive_max": 6.30078125,
+      "positive_p99": 3.783203125,
+      "positive_p999": 5.09050781250005
+    },
+    {
+      "block_size": 64,
+      "layer": 17,
+      "observations": 24381,
+      "positive_max": 5.689453125,
+      "positive_p99": 3.649218750000003,
+      "positive_p999": 4.845156250000031
+    },
+    {
+      "block_size": 128,
+      "layer": 17,
+      "observations": 12285,
+      "positive_max": 5.5625,
+      "positive_p99": 3.487421874999999,
+      "positive_p999": 4.786093750000127
+    },
+    {
+      "block_size": 16,
+      "layer": 21,
+      "observations": 97236,
+      "positive_max": 6.7578125,
+      "positive_p99": 4.17578125,
+      "positive_p999": 5.478632812500109
+    },
+    {
+      "block_size": 32,
+      "layer": 21,
+      "observations": 48666,
+      "positive_max": 6.28125,
+      "positive_p99": 3.967480468749997,
+      "positive_p999": 5.2076855468750125
+    },
+    {
+      "block_size": 64,
+      "layer": 21,
+      "observations": 24381,
+      "positive_max": 5.8203125,
+      "positive_p99": 3.7132812500000085,
+      "positive_p999": 4.9356640625000665
+    },
+    {
+      "block_size": 128,
+      "layer": 21,
+      "observations": 12285,
+      "positive_max": 5.57421875,
+      "positive_p99": 3.4686718749999983,
+      "positive_p999": 4.716531250000017
+    },
+    {
+      "block_size": 16,
+      "layer": 25,
+      "observations": 97236,
+      "positive_max": 5.935546875,
+      "positive_p99": 2.77734375,
+      "positive_p999": 4.118339843750164
+    },
+    {
+      "block_size": 32,
+      "layer": 25,
+      "observations": 48666,
+      "positive_max": 5.03515625,
+      "positive_p99": 2.6015625,
+      "positive_p999": 3.8642749023438157
+    },
+    {
+      "block_size": 64,
+      "layer": 25,
+      "observations": 24381,
+      "positive_max": 4.83203125,
+      "positive_p99": 2.390234375000002,
+      "positive_p999": 3.583906250000041
+    },
+    {
+      "block_size": 128,
+      "layer": 25,
+      "observations": 12285,
+      "positive_max": 4.619140625,
+      "positive_p99": 2.18765625,
+      "positive_p999": 3.450640625000034
+    }
+  ],
+  "margins": {
+    "11": {
+      "128": 4.408203125,
+      "16": 5.69921875,
+      "32": 5.34765625,
+      "64": 5.34765625
+    },
+    "14": {
+      "128": 5.5390625,
+      "16": 7.8828125,
+      "32": 6.634765625,
+      "64": 6.125
+    },
+    "17": {
+      "128": 5.5625,
+      "16": 7.05859375,
+      "32": 6.30078125,
+      "64": 5.689453125
+    },
+    "2": {
+      "128": 4.8828125,
+      "16": 6.7138671875,
+      "32": 5.380859375,
+      "64": 4.8828125
+    },
+    "21": {
+      "128": 5.57421875,
+      "16": 6.7578125,
+      "32": 6.28125,
+      "64": 5.8203125
+    },
+    "25": {
+      "128": 4.619140625,
+      "16": 5.935546875,
+      "32": 5.03515625,
+      "64": 4.83203125
+    },
+    "5": {
+      "128": 4.744140625,
+      "16": 6.2109375,
+      "32": 5.58984375,
+      "64": 5.15234375
+    },
+    "8": {
+      "128": 5.6015625,
+      "16": 6.998046875,
+      "32": 6.7060546875,
+      "64": 6.07470703125
+    }
+  },
+  "mathematical_certificate": false,
+  "policy": "maximum positive adjacent block-max increase on validation traces",
+  "trace_count": 24,
+  "trace_root": "artifacts/pilot/indexers_1000/traces"
+}

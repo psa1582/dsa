@@ -1,0 +1,12 @@
+{
+  "numbers": {
+    "dynamic_exact_rate": 0.999630905511811,
+    "dynamic_false_cold_rate": 8.47253464907849e-05,
+    "dynamic_gain_over_static": 0.0,
+    "dynamic_net_byte_reduction": -0.0004887864402653985,
+    "dynamic_qk_reduction": 0.0,
+    "hot_first_discovery_gain": 0.39356894663223185,
+    "selected_gamma_policy": -1.0
+  },
+  "verdict": "SOFTWARE-ONLY"
+}
