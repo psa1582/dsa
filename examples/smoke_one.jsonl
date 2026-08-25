@@ -1,0 +1,1 @@
+{"id":"text_smoke","workload":"text-smoke-repeated","text":"Temporal attention often changes gradually between consecutive decode steps. This short passage is repeated only for pipeline validation and must not be used as feasibility evidence. "}

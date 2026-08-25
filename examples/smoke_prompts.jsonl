@@ -1,0 +1,3 @@
+{"id":"text_smoke","workload":"text-smoke-repeated","text":"Temporal attention often changes gradually between consecutive decode steps. This short passage is repeated only for pipeline validation and must not be used as feasibility evidence. "}
+{"id":"code_smoke","workload":"code-smoke-repeated","text":"def stable_topk(scores, k):\n    order = sorted(range(len(scores)), key=lambda i: (-scores[i], i))\n    return order[:k]\n# Repeated smoke input only; not an evaluation corpus.\n"}
+

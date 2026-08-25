@@ -1,0 +1,38 @@
+seed: 1582
+model:
+  id: deepseek-ai/DeepSeek-V2-Lite-Chat
+  revision: 85864749cd611b4353ce1decdb286193298f64c7
+  dtype: bfloat16
+  selected_layers: [2, 5, 8, 11, 14, 17, 21, 25]
+indexer:
+  heads: 64
+  head_dim: 128
+  rope_dim: 64
+  hidden_size: 2048
+  learning_rate: 0.001
+  warmup_contexts: [4096, 8192]
+  train_steps: 1000
+quality_gate:
+  k_values: [128, 256, 512, 1024, 2048]
+  # Lift is (recall - random_recall) / (1 - random_recall).
+  min_median_normalized_lift_at_512: 0.20
+  min_layer_pass_fraction: 0.75
+trace:
+  context_lengths: [8192, 16384, 32768]
+  decode_steps: 256
+  text_prompts: 3
+  code_prompts: 3
+  score_dtype: float16
+replay:
+  k_values: [128, 256, 512, 1024, 2048]
+  block_sizes: [16, 32, 64, 128]
+  cold_streaks: [1, 2, 4, 8]
+  gamma_sigma: [0.0, 0.25, 0.5, 1.0]
+  metadata_bytes_per_block: 8
+  key_bytes: 256
+verdict:
+  max_false_cold_rate: 0.0001
+  min_exact_qk_reduction: 0.25
+  min_dynamic_gain_over_static: 0.05
+  min_hot_first_gain_over_address: 0.05
+

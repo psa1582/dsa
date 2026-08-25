@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "temporal-dsa"
+version = "0.1.0"
+description = "Temporal Lightning Indexer pruning feasibility pilot for DeepSeek MLA decode"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "matplotlib>=3.8",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+gpu = [
+  "torch>=2.4",
+  "transformers>=4.45,<5",
+  "accelerate>=0.34",
+  "safetensors>=0.4",
+  "sentencepiece>=0.2",
+]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+fast = ["numba>=0.60"]
+
+[project.scripts]
+temporal-dsa = "temporal_dsa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 96
