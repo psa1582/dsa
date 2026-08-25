@@ -1,0 +1,26 @@
+seed: 1582
+model:
+  id: deepseek-ai/DeepSeek-V2-Lite-Chat
+  revision: 85864749cd611b4353ce1decdb286193298f64c7
+  selected_layers: [2, 5, 8, 11, 14, 17, 21, 25]
+scope: Research sidecar DSA on DeepSeek-V2-Lite
+phase_a:
+  k: 2048
+  smoke_k: [512, 2048]
+  block_size: 64
+  targets: [0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50]
+  gamma_scale_quantile: 95
+  gamma_multipliers: [-4.0, -3.0, -2.0, -1.5, -1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 1.0, 2.0]
+  positive_delta_quantiles: [95, 97.5, 99, 99.5, 99.9, 99.99]
+  primary_targets:
+    Safe: 0.15
+    Balanced: 0.30
+    Aggressive: 0.45
+  max_heldout_candidates: 6
+hardware:
+  index_key_dim: 128
+  bf16_bytes_per_key: 256
+  fp8_bytes_per_key: 128
+  physical_block_sizes: [16, 32, 64, 128]
+  seed_cache_entries: [0, 256, 512, 1024, 2048]
+
