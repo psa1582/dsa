@@ -1,0 +1,69 @@
+{
+  "gpu": "NVIDIA L40S",
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "seed": 1582,
+  "rows": [
+    {
+      "context": 65536,
+      "batch": 1,
+      "query_length": 1,
+      "heads": 64,
+      "head_dimension": 128,
+      "dtype": "bfloat16",
+      "topk": 2048,
+      "block_size": 64,
+      "full64_shape": [
+        65536
+      ],
+      "h8_shape": [
+        65536
+      ],
+      "block_max_shape": [
+        1024
+      ],
+      "fused_dense_shape": [
+        65536
+      ],
+      "accepted_block_shape": [
+        1024
+      ],
+      "accepted_blocks": 411,
+      "max_abs_fused_vs_full_on_candidates": 3.0517578125e-05,
+      "passed": true,
+      "model_inference_run": false,
+      "synthetic": true
+    },
+    {
+      "context": 131072,
+      "batch": 1,
+      "query_length": 1,
+      "heads": 64,
+      "head_dimension": 128,
+      "dtype": "bfloat16",
+      "topk": 2048,
+      "block_size": 64,
+      "full64_shape": [
+        131072
+      ],
+      "h8_shape": [
+        131072
+      ],
+      "block_max_shape": [
+        2048
+      ],
+      "fused_dense_shape": [
+        131072
+      ],
+      "accepted_block_shape": [
+        2048
+      ],
+      "accepted_blocks": 820,
+      "max_abs_fused_vs_full_on_candidates": 3.0517578125e-05,
+      "passed": true,
+      "model_inference_run": false,
+      "synthetic": true
+    }
+  ],
+  "all_passed": true
+}

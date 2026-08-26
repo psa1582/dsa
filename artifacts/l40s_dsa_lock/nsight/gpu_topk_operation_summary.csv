@@ -1,0 +1,13 @@
+context,iterations,operation_type,category,stage,short_name,launch_count_total,launches_per_iteration,active_duration_us_per_iteration,nvtx_wall_us_per_iteration,source,nvtx_range
+16384,100,kernel,score,Full64 score,_full_score_kernel,100,1.0,4.41476,59.87303,artifacts/l40s_dsa_lock/nsight/full64_topk_16k.sqlite,L2_full64_topk_c16384
+16384,100,kernel,topk_gather,final Top-K gather,gatherTopK,100,1.0,53.36786,59.87303,artifacts/l40s_dsa_lock/nsight/full64_topk_16k.sqlite,L2_full64_topk_c16384
+32768,100,kernel,topk_scan,scan-by-key initialization,DeviceScanByKeyInitKernel,200,2.0,1.7501,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_scan,scan-by-key,DeviceScanByKeyKernel,200,2.0,4.18561,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,score,Full64 score,_full_score_kernel,100,1.0,7.35178,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_radix,radix digit histogram,computeBlockDigitCounts,400,4.0,7.61194,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_count,blockwise Kth count,computeBlockwiseKthCounts,100,1.0,1.15681,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,400,4.0,7.58567,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_radix,radix digit cumulative sum,computeDigitCumSum,400,4.0,6.81832,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_aux,initialize Top-K workspace,fill,100,1.0,0.84802,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,kernel,topk_gather,final Top-K gather,gatherTopK,100,1.0,3.16067,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,100,memset,memset,Top-K workspace memset,cudaMemset,200,2.0,0.9536,174.16170000000002,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768

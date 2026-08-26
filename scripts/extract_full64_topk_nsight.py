@@ -14,6 +14,10 @@ def short_stage(name: str) -> tuple[str, str]:
         return "topk_aux", "initialize Top-K workspace"
     if name == "radixFindKthValues":
         return "topk_radix", "radix threshold refinement"
+    if name == "computeBlockDigitCounts":
+        return "topk_radix", "radix digit histogram"
+    if name == "computeDigitCumSum":
+        return "topk_radix", "radix digit cumulative sum"
     if name == "computeBlockwiseWithinKCounts":
         return "topk_count", "blockwise within-K count"
     if name == "computeBlockwiseKthCounts":
@@ -38,10 +42,19 @@ def table_exists(connection: sqlite3.Connection, table: str) -> bool:
 
 def extract(path: Path, context: int) -> tuple[list[dict], list[dict]]:
     connection = sqlite3.connect(path)
-    range_name = f"optimized_full_c{context}"
-    start, end = connection.execute(
-        "SELECT start, end FROM NVTX_EVENTS WHERE text=?", (range_name,)
-    ).fetchone()
+    range_names = (f"L2_full64_topk_c{context}", f"optimized_full_c{context}")
+    range_row = None
+    range_name = ""
+    for candidate in range_names:
+        range_row = connection.execute(
+            "SELECT start, end FROM NVTX_EVENTS WHERE text=?", (candidate,)
+        ).fetchone()
+        if range_row is not None:
+            range_name = candidate
+            break
+    if range_row is None:
+        raise RuntimeError(f"none of the expected NVTX ranges {range_names} exist in {path}")
+    start, end = range_row
     score_starts = [
         row[0]
         for row in connection.execute(
@@ -115,6 +128,7 @@ def extract(path: Path, context: int) -> tuple[list[dict], list[dict]]:
                 ),
                 "bytes": byte_count,
                 "source": str(path),
+                "nvtx_range": range_name,
             }
         )
 
@@ -164,6 +178,7 @@ def extract(path: Path, context: int) -> tuple[list[dict], list[dict]]:
                 "active_duration_us_per_iteration": total_ns / iterations / 1000.0,
                 "nvtx_wall_us_per_iteration": (end - start) / iterations / 1000.0,
                 "source": str(path),
+                "nvtx_range": range_name,
             }
         )
     connection.close()

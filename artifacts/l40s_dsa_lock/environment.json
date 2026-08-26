@@ -1,0 +1,230 @@
+{
+  "bundle_materialization_runtime": {
+    "cuda": "12.8",
+    "python": "3.12.12",
+    "reason": "Prior locked sidecar environment contains pandas and safetensors.",
+    "torch": "2.9.1+cu128"
+  },
+  "driver": [
+    "580.173.02"
+  ],
+  "existing_nsight_systems_reports": [
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K2_16384.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K2_32768.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K3_16384.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K3_32768.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K4_16384.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K4_32768.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K6_16384.nsys-rep",
+    "artifacts/fused_h8_sm89/run_20260826_sm89/nsys_K6_32768.nsys-rep",
+    "artifacts/l40s_dsa_lock/nsight/full64_topk_16k.nsys-rep",
+    "artifacts/l40s_dsa_lock/nsight/full64_topk_32k.nsys-rep",
+    "artifacts/progressive_nsight/profile_16k.nsys-rep",
+    "artifacts/progressive_nsight/profile_32k.nsys-rep"
+  ],
+  "gpu_count_physical": 4,
+  "gpu_sku_exact": [
+    "NVIDIA L40S"
+  ],
+  "gpus": [
+    {
+      "compute_capability": "8.9",
+      "driver": "580.173.02",
+      "index": 0,
+      "memory_total_mib": 46068,
+      "name": "NVIDIA L40S",
+      "uuid": "GPU-7a9840eb-7837-5bbc-eed3-ce2cc2dc86a9"
+    },
+    {
+      "compute_capability": "8.9",
+      "driver": "580.173.02",
+      "index": 1,
+      "memory_total_mib": 46068,
+      "name": "NVIDIA L40S",
+      "uuid": "GPU-463c7561-2a49-cac8-7bc9-e137d745fa53"
+    },
+    {
+      "compute_capability": "8.9",
+      "driver": "580.173.02",
+      "index": 2,
+      "memory_total_mib": 46068,
+      "name": "NVIDIA L40S",
+      "uuid": "GPU-5b17147a-7f5e-23f3-e79a-01557a3ecb83"
+    },
+    {
+      "compute_capability": "8.9",
+      "driver": "580.173.02",
+      "index": 3,
+      "memory_total_mib": 46068,
+      "name": "NVIDIA L40S",
+      "uuid": "GPU-689d0db5-4c0e-68e8-54af-2d5e4691ad2e"
+    }
+  ],
+  "hugging_face_provenance_audit": {
+    "cache": "/home/psa1582/.cache/huggingface/hub",
+    "huggingface_hub": "0.36.2",
+    "network_transfer_performed": false,
+    "note": "This is provenance-only and separate from the measurement runtime.",
+    "saved_token": false,
+    "tool": "hf env"
+  },
+  "kernel_source_paths": [
+    {
+      "exists": true,
+      "path": "src/temporal_dsa/progressive_kernel.py"
+    },
+    {
+      "exists": true,
+      "path": "src/temporal_dsa/verifier_scoring.py"
+    },
+    {
+      "exists": true,
+      "path": "src/temporal_dsa/verifier.py"
+    },
+    {
+      "exists": true,
+      "path": "src/temporal_dsa/approx.py"
+    },
+    {
+      "exists": true,
+      "path": "scripts/benchmark_progressive_dsa.py"
+    },
+    {
+      "exists": true,
+      "path": "scripts/profile_progressive_dsa.py"
+    },
+    {
+      "exists": true,
+      "path": "scripts/benchmark_full64_topk_decomposition.py"
+    },
+    {
+      "exists": true,
+      "path": "scripts/benchmark_dsa_replay.py"
+    }
+  ],
+  "measurement_host": "10.201.135.16:7021",
+  "measurement_runtime": {
+    "cudnn": 91900,
+    "executable": "/opt/vllm/bin/python",
+    "python": "3.10.12",
+    "torch": "2.11.0+cu130",
+    "torch_cuda": "13.0",
+    "triton": "3.6.0"
+  },
+  "measurement_visible_gpu_ids": [
+    0
+  ],
+  "nsight_compute": "unavailable",
+  "nsight_systems": "NVIDIA Nsight Systems version 2025.3.2.474-253236389321v0",
+  "prior_result_directories": [
+    "artifacts/approx_pilot/final",
+    "artifacts/approx_pilot/mla_smoke",
+    "artifacts/approx_pilot/phase_a",
+    "artifacts/approx_pilot/phase_b",
+    "artifacts/approx_pilot/phase_c",
+    "artifacts/approx_pilot/repairs",
+    "artifacts/approx_pilot/teacher_forced_smoke",
+    "artifacts/approx_pilot/teacher_forced_worst64",
+    "artifacts/approx_pilot/teacher_forced_worst_smoke",
+    "artifacts/corpus",
+    "artifacts/fused_h8_sm89/run_20260826_sm89",
+    "artifacts/h8_reconstruction/audit",
+    "artifacts/h8_reconstruction/cache",
+    "artifacts/h8_reconstruction/final",
+    "artifacts/h8_reconstruction/offline",
+    "artifacts/pilot/calibration_layer2",
+    "artifacts/pilot/final_report",
+    "artifacts/pilot/final_report_calibrated",
+    "artifacts/pilot/indexers_1000",
+    "artifacts/pilot/quality_8k",
+    "artifacts/pilot/replay_benchmark_aggregate",
+    "artifacts/pilot/replay_benchmark_fast",
+    "artifacts/pilot/scores_a",
+    "artifacts/pilot/scores_b",
+    "artifacts/pilot/trace_capture_16k",
+    "artifacts/pilot/trace_capture_32k",
+    "artifacts/pilot/trace_capture_8k",
+    "artifacts/pilot/warmup_4k",
+    "artifacts/pilot/warmup_8k",
+    "artifacts/progressive_nsight",
+    "artifacts/progressive_stages",
+    "artifacts/progressive_sw/bench",
+    "artifacts/progressive_sw/closed_loop",
+    "artifacts/progressive_sw/final",
+    "artifacts/progressive_sw/mla",
+    "artifacts/progressive_sw/nsight",
+    "artifacts/progressive_sw/prior_approx",
+    "artifacts/progressive_sw/prior_two_path",
+    "artifacts/progressive_sw/stages",
+    "artifacts/progressive_sw/teacher_forced",
+    "artifacts/progressive_sw/threshold",
+    "artifacts/progressive_sw_bench",
+    "artifacts/progressive_sw_primary",
+    "artifacts/progressive_threshold",
+    "artifacts/progressive_threshold_closed",
+    "artifacts/progressive_threshold_mla",
+    "artifacts/progressive_threshold_teacher",
+    "artifacts/smoke/captures",
+    "artifacts/smoke/indexer",
+    "artifacts/smoke/report",
+    "artifacts/streaming_topk/churn",
+    "artifacts/streaming_topk/decomposition",
+    "artifacts/streaming_topk/decomposition_repeat2",
+    "artifacts/streaming_topk/final",
+    "artifacts/streaming_topk/heap",
+    "artifacts/two_path",
+    "artifacts/two_path/closed_loop",
+    "artifacts/two_path/cycle_sim",
+    "artifacts/two_path/final",
+    "artifacts/two_path/full_mla",
+    "artifacts/two_path/full_replay",
+    "artifacts/two_path/oracle_full",
+    "artifacts/two_path/oracle_smoke",
+    "artifacts/two_path/oracle_tail32k",
+    "artifacts/two_path/smoke",
+    "artifacts/two_path/tail32k",
+    "artifacts/two_path/tail32k_mla",
+    "artifacts/two_path/tail32k_selected",
+    "artifacts/two_path/teacher_forced"
+  ],
+  "protected_existing_job_gpu_ids": [
+    2,
+    3
+  ],
+  "scope": "DeepSeek-V2-Lite research-sidecar DSA L40S lock",
+  "source_checkout": {
+    "authoritative_local_branch_status_during_measurement": "lock-study changes in progress on exp/l40s-dsa-lock; no unrelated edits",
+    "git_base_commit_from_authoritative_local_clone": "130148b4fe6e9a601a29cb40a8485bca77503158",
+    "git_branch_from_authoritative_local_clone": "exp/l40s-dsa-lock",
+    "is_git_repository": false,
+    "path": "/home/psa1582/temporal-dsa-pilot",
+    "remote_snapshot_note": "Measurement checkout is a source snapshot without .git metadata."
+  },
+  "system_cuda_toolkit": {
+    "note": "System nvcc is not the CUDA runtime bundled with PyTorch.",
+    "nvcc_path": "/usr/bin/nvcc",
+    "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2021 NVIDIA Corporation\nBuilt on Thu_Nov_18_09:45:30_PST_2021\nCuda compilation tools, release 11.5, V11.5.119\nBuild cuda_11.5.r11.5/compiler.30672275_0"
+  },
+  "trace_roots": [
+    "artifacts/h8_reconstruction",
+    "artifacts/h8_reconstruction/cache/calibration",
+    "artifacts/h8_reconstruction/cache/test",
+    "artifacts/h8_reconstruction/cache/validation",
+    "artifacts/pilot",
+    "artifacts/pilot/calibration_layer2/traces",
+    "artifacts/pilot/indexers_1000/traces",
+    "artifacts/pilot/scores_a/traces",
+    "artifacts/pilot/scores_b/traces",
+    "artifacts/pilot/trace_capture_16k",
+    "artifacts/pilot/trace_capture_32k",
+    "artifacts/pilot/trace_capture_8k",
+    "artifacts/pilot/warmup_4k",
+    "artifacts/pilot/warmup_8k",
+    "artifacts/progressive_threshold/selection_details",
+    "artifacts/smoke",
+    "artifacts/smoke/indexer/traces",
+    "artifacts/two_path/full_replay/selection_details",
+    "artifacts/two_path/smoke/selection_details",
+    "artifacts/two_path/tail32k_selected/selection_details"
+  ]
+}

@@ -1,0 +1,25 @@
+context,operation_order,operation_type,category,stage,short_name,duration_us_first_iteration,gap_from_previous_us_first_iteration,bytes,source,nvtx_range
+16384,1,kernel,score,Full64 score,_full_score_kernel,4.32,0.0,,artifacts/l40s_dsa_lock/nsight/full64_topk_16k.sqlite,L2_full64_topk_c16384
+16384,2,kernel,topk_gather,final Top-K gather,gatherTopK,53.312,14.689,,artifacts/l40s_dsa_lock/nsight/full64_topk_16k.sqlite,L2_full64_topk_c16384
+32768,1,kernel,score,Full64 score,_full_score_kernel,7.424,0.0,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,2,kernel,topk_aux,initialize Top-K workspace,fill,0.832,16.512,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,3,memset,memset,Top-K workspace memset,cudaMemset,0.544,7.36,1024.0,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,4,memset,memset,Top-K workspace memset,cudaMemset,0.416,3.712,132.0,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,5,kernel,topk_radix,radix digit histogram,computeBlockDigitCounts,1.92,6.24,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,6,kernel,topk_radix,radix digit cumulative sum,computeDigitCumSum,1.696,3.296,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,7,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,1.856,3.328,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,8,kernel,topk_radix,radix digit histogram,computeBlockDigitCounts,1.952,5.185,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,9,kernel,topk_radix,radix digit cumulative sum,computeDigitCumSum,1.728,3.328,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,10,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,1.888,3.328,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,11,kernel,topk_radix,radix digit histogram,computeBlockDigitCounts,1.888,3.616,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,12,kernel,topk_radix,radix digit cumulative sum,computeDigitCumSum,1.696,3.552,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,13,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,1.824,3.936,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,14,kernel,topk_radix,radix digit histogram,computeBlockDigitCounts,1.888,2.816,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,15,kernel,topk_radix,radix digit cumulative sum,computeDigitCumSum,1.728,2.912,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,16,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,1.856,3.808,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,17,kernel,topk_count,blockwise Kth count,computeBlockwiseKthCounts,1.152,3.488,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,18,kernel,topk_scan,scan-by-key initialization,DeviceScanByKeyInitKernel,0.896,10.528,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,19,kernel,topk_scan,scan-by-key,DeviceScanByKeyKernel,2.08,5.952,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,20,kernel,topk_scan,scan-by-key initialization,DeviceScanByKeyInitKernel,0.896,15.584,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,21,kernel,topk_scan,scan-by-key,DeviceScanByKeyKernel,2.112,5.824,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
+32768,22,kernel,topk_gather,final Top-K gather,gatherTopK,3.168,5.408,,artifacts/l40s_dsa_lock/nsight/full64_topk_32k.sqlite,L2_full64_topk_c32768
