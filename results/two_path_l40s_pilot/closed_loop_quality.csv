@@ -1,0 +1,158 @@
+benchmark,prompt_id,context_length,steps,policy,selection_role,verifier,first_divergence_step,generated_token_agreement,baseline_task_success,approx_task_success,baseline_decode_seconds,approx_decode_seconds,baseline_text,approx_text
+ruler_niah_small,niah,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w8_b64_r0.1,12,0.125,True,True,12.13336224,16.84186395," KOREA1582# 2023年10月20日宜忌
+
+2023年10月20日，农历九月初六，星期五。
+
+【宜】祭祀、沐浴、修饰垣墙、平治道涂、余事勿取
+
+【忌】诸事不宜
+
+【冲】冲龙(壬辰)煞北
+
+【胎神占方】房床栖外正南
+
+【彭祖百忌】戊不受田田主不祥 戌不吃犬作怪上床
+"," KOREA1582# 1. Introduction
+
+This document provides a detailed description of the `pytket` package, which is a Python interface to the T-KET quantum computing library. `pytket` is designed to make it easy to perform quantum computing tasks using the T-KET library.
+
+# 2. Installation
+
+To install `pytket`, you can use pip:
+
+```bash
+pip install pytket
+```
+
+# 3. Usage
+
+## 3.1. Importing the Package
+
+You can import the"
+long_code_completion,code_heldout_3,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w8_b64_r0.1,66,0.515625,,,10.70098619,16.75532828,"""):
+                break
+        return bytes(res)
+
+    def readlines(self, hint=-1):
+        r""""""Return a list of lines from the stream.
+
+        If hint is specified, at most hint lines will be read.
+        Hint should be an int.
+
+        The lines are returned as bytes.
+        """"""
+        lines = []
+        while hint < 0 or len(lines) < hint:
+            line = self.readline()
+            if not line:
+                break
+            lines.append(line)
+        return lines
+
+    def write","""):
+                break
+        return bytes(res)
+
+    def readlines(self, hint=-1):
+        r""""""Return a list of lines from the stream.
+
+        If hint is specified, at most hint lines will be read.
+        Hint should be an int.
+
+        The line terminator is always b'\n' for binary files; for text
+        files, the newlines argument to open can be used to select the line
+        terminator(s) recognized.
+        """"""
+        if hint < 0:
+            return []
+        lines = []
+       "
+ruler_niah_small,niah,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w8_b64_r0.1,49,0.375,True,True,13.73516242,20.8246644," KOREA1582# 1. 데이터 분석을 위한 기본 개념
+
+## 1.1 데이터 분석의 정의
+데이터 분석은 데이터를 조작하고 해석하여 의사 결정을 위한 정보를 "," KOREA1582# 1. 데이터 분석을 위한 기본 개념
+
+## 1.1. 데이터 분석의 정의
+데이터 분석은 데이터를 조작하고 분석하여 의사 결정을 위한 정보를"
+long_code_completion,code_heldout_3,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w8_b64_r0.1,15,0.2265625,,,12.36657757,20.6569304," if mode == 'r':
+            self._readable = True
+            self._writable = False
+            self._appending = False
+        elif mode == 'w':
+            self._readable = False
+            self._writable = True
+            self._appending = False
+        elif mode == 'x':
+            self._readable = False
+            self._writable = True
+            self._appending = True
+        elif mode == 'a':
+            self._readable = False
+            self._writable = True
+            self._appending = True
+        elif mode == 'b':
+           "," if mode == 'r':
+            self._readable = True
+        elif mode == 'w':
+            self._writable = True
+        elif mode == 'x':
+            self._created = True
+        elif mode == 'a':
+            self._appending = True
+        else:
+            self._writable = self._appending = True
+
+        if closefd:
+            self._closefd = True
+        else:
+            self._closefd = False
+
+        if opener is not None:
+            fd = opener(file, mode)
+            if fd < 0"
+ruler_niah_small,niah,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w8_b64_r0.1,10,0.078125,True,True,17.55853182,28.80085462," KOREA1582A fact is hidden in the following notes. Remember it exactly.
+ The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books"," KOREA1582# 100 Days of Code - Log Day 10
+
+### Day 10: September 10, 2023
+
+### Log
+
+**Today's Progress**: I continued working on the project for the Code Institute course. I focused on refining the user interface and implementing additional features.
+
+**Thoughts**: I am finding the process of designing and implementing the user interface quite challenging but also rewarding. It's great to see the project come together with each new feature I add.
+
+**Link to work**: [GitHub]("
+long_code_completion,code_heldout_3,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w8_b64_r0.1,68,0.53125,,,16.17772886,28.77795125,", exc)
+                else:
+                    logger.warning(""%s"", message)
+                self._loop.call_exception_handler({
+                    'event_loop': self._loop,
+                    'exc_info': (exc,),
+                    'source': self,
+                })
+            else:
+                raise exc
+        except:
+            self._loop.call_exception_handler({
+                'event_loop': self._loop,
+                'exc_info': sys.exc_info(),
+                'source': self,
+            })
+        self._closing = True
+       ",", exc)
+                else:
+                    logger.warning(""%s"", message)
+                self._loop.call_exception_handler({
+                    'event_loop': self._loop,
+                    'exc_info': (exc,),
+                    'source': self,
+                })
+            else:
+                super()._fatal_error(exc, message)
+        except Exception:
+            self._loop.call_exception_handler({
+                'event_loop': self._loop,
+                'exc_info': (exc,),
+                'source': self,
+            })
+"

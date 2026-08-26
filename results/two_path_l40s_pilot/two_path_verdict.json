@@ -1,0 +1,65 @@
+{
+  "overall_verdict": "HEAD-SPARSE-SW-PROMISING",
+  "case_a_verdict": "HEAD-SPARSE-SW-PROMISING",
+  "case_b_verdict": "NO-GO",
+  "strong_hardware_candidate": false,
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "decision_basis": {
+    "head_h8_aggressive": {
+      "quality_band": "A",
+      "mla_relative_l2_p95": 0.0259577026590704,
+      "output_cosine_p5": 0.9996662437915802,
+      "top128_recall": 0.9999660915798612,
+      "top512_recall": 0.9996808369954427,
+      "median_net_qk_reduction": 0.2072201929413994,
+      "median_physical_b64_key_byte_reduction": -0.027481494710603,
+      "teacher_forced_ppl_delta": -0.0049539577363405,
+      "cycle_speedup_min": 0.9594002313112284,
+      "cycle_speedup_median": 1.356791491526152
+    },
+    "dimension_nearest_band_b": {
+      "quality_band": "C",
+      "mla_relative_l2_p95": 0.0503936884924769,
+      "median_net_qk_reduction": 0.1595427743479308,
+      "median_physical_b64_key_byte_reduction": 0.159288933304961,
+      "sketch_bytes_per_token_bf16": 64
+    },
+    "closed_loop": {
+      "first_divergence_min": 10,
+      "generated_token_agreement_mean": 0.30859375,
+      "gpus": [
+        "NVIDIA L40S",
+        "NVIDIA L40S"
+      ],
+      "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+      "niah_approx_success_rate": 1.0,
+      "niah_baseline_success_rate": 1.0,
+      "policy": {
+        "config_id": "streak2_bucket8_m0",
+        "family": "streak2_bucket8",
+        "multiplier": 0.0,
+        "repair": "none",
+        "selection_role": "Aggressive"
+      },
+      "python": "3.12.12",
+      "rows": 6,
+      "verifier": {
+        "block_size": 64,
+        "name": "head_dynamic_abs_w8_b64_r0.1",
+        "path": "head",
+        "precision": "bf16",
+        "rescue_fraction": 0.1,
+        "strategy": "high_weight",
+        "width": 8
+      }
+    }
+  },
+  "limitations": [
+    "Greedy closed-loop token agreement was 30.86% with first divergence at step 10, although the three NIAH probes stayed correct.",
+    "Head-sparse scans full K and increased physical B64 traffic by 2.75% at the selected point.",
+    "The cycle simulator is an analytical optimistic-overlap model, not RTL or silicon-calibrated timing.",
+    "Fixed transition/tail-aware head and dimension calibration, verifier-only baselines, and token-rescue ceilings were not expanded after the focused 32K tail early stop.",
+    "INT8/INT4/INT2 dimension sketches were gated off because BF16 dimension-sparse failed Band B."
+  ],
+  "next_step": "Prototype the H8 dynamic-head path as a software/MISA-style kernel with Nsight bandwidth measurement; do not proceed to RTL. Improve the all-head compact detector before another hardware gate."
+}

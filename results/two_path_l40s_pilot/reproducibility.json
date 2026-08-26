@@ -1,0 +1,57 @@
+{
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "model": "deepseek-ai/DeepSeek-V2-Lite-Chat",
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "server": "10.201.135.16:7021",
+  "gpu_sku": [
+    "NVIDIA L40S",
+    "NVIDIA L40S"
+  ],
+  "visible_physical_gpu_ids": [
+    0,
+    1
+  ],
+  "protected_gpu_ids": [
+    2,
+    3
+  ],
+  "selected_layers": [
+    2,
+    5,
+    8,
+    11,
+    14,
+    17,
+    21,
+    25
+  ],
+  "heldout_traces": 144,
+  "transitions_per_policy": 9216,
+  "block_size": 64,
+  "top_k": 2048,
+  "random_seed": 1582,
+  "implementation_base_commit": "4a66071",
+  "unit_tests": "22 passed",
+  "commands": {
+    "full_replay": "run_two_path_verifier.py --max-transitions 64 --policy-roles Balanced Aggressive",
+    "oracle": "evaluate_oracle_rescue.py --max-transitions 64 --policy-roles Balanced Aggressive",
+    "actual_mla": "evaluate_verifier_mla_output.py (144 traces, four selected configs)",
+    "teacher_forced": "evaluate_teacher_forced.py --prompt-ids code_heldout_3 text_heldout_26493 --contexts 8192 16384 32768 --steps 64 --roles Aggressive --verifier-names head_dynamic_abs_w8_b64_r0.1",
+    "closed_loop": "evaluate_verifier_closed_loop.py --contexts 8192 16384 32768 --steps 128",
+    "cycle_sim": "simulate_two_path_hardware.py --roles Balanced Aggressive"
+  },
+  "audit_sha256": {
+    "full_replay/verifier_summary.csv": "4c4bf18295ef96c74e64a7c91773c3e5c926b74ecba63f86f074f899200ef873",
+    "full_mla/mla_output_summary.csv": "de417a9231c52d37eb18dfc3834bacfcb91a46c84ba24285b34171fe21f4da46",
+    "oracle_full/oracle_rescue_ceiling.csv": "998b2e2a2c3d5a8c1ab40b7aa00da777c5b7518cae2bb0784d71a208239844e2",
+    "teacher_forced/teacher_forced_summary.csv": "3b3699d52568821e1b3d3d089e2d577462a42b764cb30d6ceb6032cac251a9b1",
+    "closed_loop/closed_loop_quality.csv": "0e4cac5e0ed4bc1152ae94a2346807f670a5ae37f113a6a3f5d6e74ef747f95f",
+    "cycle_sim/cycle_sim_results.csv": "ce3968840b05c25fb8bdd6c3ebb0afa976dd03f18742c9699e03928427f6bb87"
+  },
+  "graph_count": 22,
+  "early_stops": {
+    "dimension_precision_sweep": "skipped: BF16 dimension-sparse failed Band B",
+    "learned_projection": "skipped: no BF16 dimension candidate passed Band B",
+    "expanded_fixed_oracle_strategy_sweep": "not expanded after focused 32K tail results; dynamic and Hadamard/random reference sweep retained"
+  }
+}

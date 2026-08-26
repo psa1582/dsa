@@ -1,0 +1,85 @@
+{
+  "configs": [
+    {
+      "block_size": 64,
+      "name": "head_dynamic_abs_w8_b64_r0.05",
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fraction": 0.05,
+      "strategy": "high_weight",
+      "width": 8
+    },
+    {
+      "block_size": 64,
+      "name": "head_dynamic_abs_w8_b64_r0.1",
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fraction": 0.1,
+      "strategy": "high_weight",
+      "width": 8
+    },
+    {
+      "block_size": 64,
+      "name": "head_dynamic_abs_w16_b64_r0.05",
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fraction": 0.05,
+      "strategy": "high_weight",
+      "width": 16
+    },
+    {
+      "block_size": 64,
+      "name": "head_dynamic_abs_w16_b64_r0.1",
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fraction": 0.1,
+      "strategy": "high_weight",
+      "width": 16
+    },
+    {
+      "block_size": 64,
+      "name": "dim_had_even_w16_b64_r0.05",
+      "path": "dim",
+      "precision": "bf16",
+      "rescue_fraction": 0.05,
+      "rotation": "hadamard",
+      "strategy": "evenly_spaced",
+      "width": 16
+    },
+    {
+      "block_size": 64,
+      "name": "dim_had_even_w16_b64_r0.1",
+      "path": "dim",
+      "precision": "bf16",
+      "rescue_fraction": 0.1,
+      "rotation": "hadamard",
+      "strategy": "evenly_spaced",
+      "width": 16
+    },
+    {
+      "block_size": 64,
+      "name": "dim_had_random_w32_b64_r0.05",
+      "path": "dim",
+      "precision": "bf16",
+      "rescue_fraction": 0.05,
+      "rotation": "hadamard",
+      "seed": 1582,
+      "strategy": "random_fixed",
+      "width": 32
+    },
+    {
+      "block_size": 64,
+      "name": "dim_had_random_w32_b64_r0.1",
+      "path": "dim",
+      "precision": "bf16",
+      "rescue_fraction": 0.1,
+      "rotation": "hadamard",
+      "seed": 1582,
+      "strategy": "random_fixed",
+      "width": 32
+    }
+  ],
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "selection_basis": "32K layers 8/17/21 Balanced/Aggressive Pareto screen",
+  "seed": 1582
+}

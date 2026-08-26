@@ -1,0 +1,29 @@
+{
+  "first_divergence_min": 10,
+  "generated_token_agreement_mean": 0.30859375,
+  "gpus": [
+    "NVIDIA L40S",
+    "NVIDIA L40S"
+  ],
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "niah_approx_success_rate": 1.0,
+  "niah_baseline_success_rate": 1.0,
+  "policy": {
+    "config_id": "streak2_bucket8_m0",
+    "family": "streak2_bucket8",
+    "multiplier": 0.0,
+    "repair": "none",
+    "selection_role": "Aggressive"
+  },
+  "python": "3.12.12",
+  "rows": 6,
+  "verifier": {
+    "block_size": 64,
+    "name": "head_dynamic_abs_w8_b64_r0.1",
+    "path": "head",
+    "precision": "bf16",
+    "rescue_fraction": 0.1,
+    "strategy": "high_weight",
+    "width": 8
+  }
+}

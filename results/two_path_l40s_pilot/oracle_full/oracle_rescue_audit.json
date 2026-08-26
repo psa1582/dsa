@@ -1,0 +1,17 @@
+{
+  "command": "scripts/evaluate_oracle_rescue.py --model /home/psa1582/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-V2-Lite-Chat/snapshots/85864749cd611b4353ce1decdb286193298f64c7 --revision 85864749cd611b4353ce1decdb286193298f64c7 --trace-roots artifacts/pilot/scores_a/traces artifacts/pilot/scores_b/traces --selection artifacts/approx_pilot/final/selected_policies.json --output artifacts/two_path/oracle_full --policy-roles Balanced Aggressive --max-transitions 64 --local-files-only",
+  "elapsed_seconds": 596.0243990169838,
+  "gpus": [
+    "NVIDIA L40S",
+    "NVIDIA L40S"
+  ],
+  "max_transitions": 64,
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "python": "3.12.12",
+  "torch": "2.9.1+cu128",
+  "trace_count": 144,
+  "visible_gpu_ids": [
+    0,
+    1
+  ]
+}

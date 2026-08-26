@@ -1,0 +1,15 @@
+{
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "quality_primary": {
+    "temporal_policy": "streak2_bucket8_m0",
+    "selection_role": "Aggressive",
+    "verifier": "head_dynamic_abs_w8_b64_r0.1",
+    "reason": "Only evaluated point passing Band B/A, teacher PPL, and median net QK >=20%"
+  },
+  "dimension_nearest_quality_boundary": {
+    "temporal_policy": "streak2_bucket8_m-0.75_refresh8",
+    "selection_role": "Balanced",
+    "verifier": "dim_had_random_w32_b64_r0.1",
+    "reason": "RelL2 p95 5.039%, just outside Band B; physical reduction only 15.93%"
+  }
+}

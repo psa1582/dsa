@@ -19,6 +19,12 @@ from temporal_dsa.approx import ApproxPolicy, ApproxState, initialize_state, rep
 from temporal_dsa.metrics import stable_topk
 from temporal_dsa.sidecar import LightningIndexerSidecar
 from temporal_dsa.v2_collect import MODEL_REVISION, fixed_device_map
+from temporal_dsa.verifier import VerifierConfig, verifier_step
+from temporal_dsa.verifier_scoring import (
+    dynamic_head_indices,
+    score_dim_sparse,
+    score_head_sparse,
+)
 
 
 def family_policy(family: str, *, name: str, gamma: float) -> ApproxPolicy:
@@ -60,6 +66,26 @@ def build_policy(spec: dict[str, Any], layer: int, scales: dict[int, float]) -> 
     return replace(policy, **spec.get("overrides", {}))
 
 
+def build_verifier_config(spec: dict[str, Any]) -> VerifierConfig:
+    path = str(spec["path"])
+    width = int(spec["width"])
+    precision = str(spec.get("precision", "bf16"))
+    bytes_per_dimension = {"bf16": 2.0, "int8": 1.0, "int4": 0.5, "int2": 0.25}
+    if precision not in bytes_per_dimension:
+        raise ValueError(f"unsupported verifier precision: {precision}")
+    return VerifierConfig(
+        name=str(spec["name"]),
+        path=path,
+        width=width,
+        score_ratio=width / (64 if path == "head" else 128),
+        block_size=int(spec.get("block_size", 64)),
+        rescue_fraction=float(spec.get("rescue_fraction", 0.05)),
+        sketch_bytes_per_token=(
+            0.0 if path == "head" else width * bytes_per_dimension[precision]
+        ),
+    )
+
+
 @dataclass
 class RunOutput:
     logits: torch.Tensor
@@ -98,11 +124,22 @@ class SparseTeacherController:
         self.policy_by_layer: dict[int, ApproxPolicy] = {}
         self.reset("dense", {})
 
-    def reset(self, mode: str, policy_by_layer: dict[int, ApproxPolicy]) -> None:
-        if mode not in {"dense", "baseline", "approx"}:
+    def reset(
+        self,
+        mode: str,
+        policy_by_layer: dict[int, ApproxPolicy],
+        verifier_spec: dict[str, Any] | None = None,
+    ) -> None:
+        if mode not in {"dense", "baseline", "approx", "verifier"}:
             raise ValueError(f"unknown mode: {mode}")
+        if mode == "verifier" and verifier_spec is None:
+            raise ValueError("verifier mode requires a verifier specification")
         self.mode = mode
         self.policy_by_layer = policy_by_layer
+        self.verifier_spec = verifier_spec
+        self.verifier_config = (
+            None if verifier_spec is None else build_verifier_config(verifier_spec)
+        )
         self.encoded_keys: dict[int, torch.Tensor] = {}
         self.policy_state: dict[int, ApproxState] = {}
         self.policy_step: dict[int, int] = {layer: 0 for layer in self.selected_layers}
@@ -136,16 +173,59 @@ class SparseTeacherController:
             self.policy_state[layer] = state
             return state.topk
         step = self.policy_step[layer] + 1
-        state, _, detail = replay_step(
-            self.policy_state[layer],
-            score_vector,
-            policy=self.policy_by_layer[layer],
-            k=self.k,
-            block_size=self.block_size,
-            step=step,
-            history_mode="own",
-            previous_length=score_vector.size - 1,
-        )
+        if self.mode == "verifier":
+            if self.verifier_spec is None or self.verifier_config is None:
+                raise RuntimeError("missing verifier configuration")
+            query_rows = queries[0]
+            weight_rows = weights[0]
+            key_rows = self.encoded_keys[layer][0]
+            if self.verifier_config.path == "head":
+                head_ids = dynamic_head_indices(
+                    weight_rows,
+                    self.verifier_config.width,
+                    str(self.verifier_spec["strategy"]),
+                )
+                partial = score_head_sparse(
+                    query_rows, weight_rows, key_rows, head_ids
+                )[0].cpu().numpy()
+            else:
+                width = self.verifier_config.width
+                strategy = str(self.verifier_spec["strategy"])
+                if strategy == "evenly_spaced":
+                    dimensions = np.linspace(0, 127, width, dtype=np.int64)
+                elif strategy == "random_fixed":
+                    rng = np.random.default_rng(int(self.verifier_spec.get("seed", 1582)))
+                    dimensions = np.sort(rng.choice(128, size=width, replace=False))
+                else:
+                    raise ValueError(f"unsupported live dimension strategy: {strategy}")
+                partial = score_dim_sparse(
+                    query_rows,
+                    weight_rows,
+                    key_rows,
+                    dimensions,
+                    rotation=str(self.verifier_spec.get("rotation", "none")),
+                )[0].cpu().numpy()
+            state, _, detail = verifier_step(
+                self.policy_state[layer],
+                score_vector,
+                partial,
+                policy=self.policy_by_layer[layer],
+                config=self.verifier_config,
+                k=self.k,
+                step=step,
+                previous_length=score_vector.size - 1,
+            )
+        else:
+            state, _, detail = replay_step(
+                self.policy_state[layer],
+                score_vector,
+                policy=self.policy_by_layer[layer],
+                k=self.k,
+                block_size=self.block_size,
+                step=step,
+                history_mode="own",
+                previous_length=score_vector.size - 1,
+            )
         self.policy_state[layer] = state
         self.policy_step[layer] = step
         return detail["approximate"]
@@ -307,8 +387,9 @@ def run_sequence(
     context_length: int,
     steps: int,
     selected_layers: list[int],
+    verifier_spec: dict[str, Any] | None = None,
 ) -> RunOutput:
-    controller.reset(mode, policies)
+    controller.reset(mode, policies, verifier_spec)
     input_device = model.model.embed_tokens.weight.device
     prefill = torch.tensor(
         token_ids[:context_length], device=input_device, dtype=torch.long
@@ -463,6 +544,8 @@ def main() -> None:
     parser.add_argument("--steps", type=int, default=16)
     parser.add_argument("--layers", type=int, nargs="+", required=True)
     parser.add_argument("--roles", nargs="+", default=["Safe"])
+    parser.add_argument("--verifier-configs", type=Path)
+    parser.add_argument("--verifier-names", nargs="+")
     parser.add_argument("--include-dense", action="store_true")
     parser.add_argument("--local-files-only", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
@@ -485,6 +568,17 @@ def main() -> None:
     if not specs:
         raise ValueError(f"no selected policies for roles {args.roles}")
     scales = {int(key): float(value) for key, value in selection["gamma_scale"].items()}
+    verifier_specs: list[dict[str, Any]] = []
+    if args.verifier_configs is not None:
+        payload = json.loads(args.verifier_configs.read_text())
+        verifier_specs = list(payload["configs"])
+        if args.verifier_names:
+            names = set(args.verifier_names)
+            verifier_specs = [row for row in verifier_specs if row["name"] in names]
+        if not verifier_specs:
+            raise ValueError("no verifier configurations matched --verifier-names")
+        if len(verifier_specs) * len(specs) > 6:
+            raise ValueError("teacher-forced verifier evaluation is capped at six candidates")
     config = AutoConfig.from_pretrained(
         args.model, revision=args.revision, local_files_only=args.local_files_only,
         trust_remote_code=True,
@@ -538,19 +632,27 @@ def main() -> None:
                 policies = {
                     layer: build_policy(spec, layer, scales) for layer in args.layers
                 }
-                approximate = run_sequence(
-                    model, controller, "approx", policies, token_ids, context_length,
-                    args.steps, args.layers,
-                )
-                rows.extend(
-                    comparison_rows(
-                        baseline, approximate, policy=spec["config_id"],
-                        role=spec["selection_role"], prompt_id=prompt_id,
-                        workload=prompt["workload"], context_length=context_length,
-                        selected_layers=args.layers,
-                        comparison="full_indexer_vs_approx",
+                candidates = verifier_specs or [None]
+                for verifier_spec in candidates:
+                    mode = "verifier" if verifier_spec is not None else "approx"
+                    approximate = run_sequence(
+                        model, controller, mode, policies, token_ids, context_length,
+                        args.steps, args.layers, verifier_spec,
                     )
-                )
+                    policy_name = str(spec["config_id"])
+                    comparison = "full_indexer_vs_approx"
+                    if verifier_spec is not None:
+                        policy_name += "+" + str(verifier_spec["name"])
+                        comparison = "full_indexer_vs_two_path_verifier"
+                    rows.extend(
+                        comparison_rows(
+                            baseline, approximate, policy=policy_name,
+                            role=spec["selection_role"], prompt_id=prompt_id,
+                            workload=prompt["workload"], context_length=context_length,
+                            selected_layers=args.layers,
+                            comparison=comparison,
+                        )
+                    )
             run_audit.append(
                 {"prompt_id": prompt_id, "context_length": context_length, "steps": args.steps}
             )
@@ -571,6 +673,7 @@ def main() -> None:
         "layers": args.layers,
         "roles": args.roles,
         "include_dense": args.include_dense,
+        "verifier_configs": verifier_specs,
         "runs": run_audit,
         "reference_implementation": True,
     }

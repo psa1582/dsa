@@ -1,0 +1,27 @@
+{
+  "command": "scripts/run_two_path_verifier.py --trace-roots artifacts/pilot/scores_a/traces artifacts/pilot/scores_b/traces --selection artifacts/approx_pilot/final/selected_policies.json --verifier-configs configs/two_path_full_selected.json --checkpoint-root artifacts/pilot/indexers_1000/checkpoints --output artifacts/two_path/full_replay --policy-roles Balanced Aggressive --max-transitions 64 --tail-labels artifacts/two_path/oracle_tail32k/tail_critical_labels.csv --tail-definition top4 --save-details",
+  "config_count": 4,
+  "cuda": "12.8",
+  "duplicate_qk_accounting": false,
+  "elapsed_seconds": 848.4351337957196,
+  "gpus": [
+    "NVIDIA L40S",
+    "NVIDIA L40S"
+  ],
+  "max_transitions": 64,
+  "oracle_leakage": false,
+  "policy_roles": [
+    "Balanced",
+    "Aggressive"
+  ],
+  "python": "3.12.12",
+  "score_reconstruction": [],
+  "tail_definition": "top4",
+  "tail_label_file": "artifacts/two_path/oracle_tail32k/tail_critical_labels.csv",
+  "torch": "2.9.1+cu128",
+  "trace_count": 144,
+  "visible_gpu_ids": [
+    0,
+    1
+  ]
+}

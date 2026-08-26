@@ -1,0 +1,73 @@
+{
+  "cuda": "12.8",
+  "gpus": [
+    "NVIDIA L40S",
+    "NVIDIA L40S"
+  ],
+  "include_dense": false,
+  "layers": [
+    2,
+    5,
+    8,
+    11,
+    14,
+    17,
+    21,
+    25
+  ],
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "python": "3.12.12",
+  "reference_implementation": true,
+  "roles": [
+    "Aggressive"
+  ],
+  "runs": [
+    {
+      "context_length": 8192,
+      "prompt_id": "code_heldout_3",
+      "steps": 64
+    },
+    {
+      "context_length": 16384,
+      "prompt_id": "code_heldout_3",
+      "steps": 64
+    },
+    {
+      "context_length": 32768,
+      "prompt_id": "code_heldout_3",
+      "steps": 64
+    },
+    {
+      "context_length": 8192,
+      "prompt_id": "text_heldout_26493",
+      "steps": 64
+    },
+    {
+      "context_length": 16384,
+      "prompt_id": "text_heldout_26493",
+      "steps": 64
+    },
+    {
+      "context_length": 32768,
+      "prompt_id": "text_heldout_26493",
+      "steps": 64
+    }
+  ],
+  "torch": "2.9.1+cu128",
+  "transformers": "4.57.3",
+  "verifier_configs": [
+    {
+      "block_size": 64,
+      "name": "head_dynamic_abs_w8_b64_r0.1",
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fraction": 0.1,
+      "strategy": "high_weight",
+      "width": 8
+    }
+  ],
+  "visible_gpu_ids": [
+    0,
+    1
+  ]
+}
