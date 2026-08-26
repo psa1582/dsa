@@ -1,0 +1,11 @@
+{
+  "calibration_fit_uses_test": false,
+  "global_baseline_transition_count": 64,
+  "gpu_used": false,
+  "h8_cache": "scripts/cache_h8_reconstruction_scores.py with CUDA_VISIBLE_DEVICES empty",
+  "offline_replay": "scripts/evaluate_h8_reconstruction_offline.py with CUDA_VISIBLE_DEVICES empty",
+  "report": "scripts/build_h8_reconstruction_report.py",
+  "test_fit_or_selection": false,
+  "trace_audit": "scripts/audit_h8_reconstruction_traces.py",
+  "validation_selects_method": true
+}

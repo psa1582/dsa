@@ -185,12 +185,15 @@ def load_sidecar_encoded(
     from .sidecar import LightningIndexerSidecar
 
     capture = torch.load(capture_path, map_location="cpu", weights_only=True)
-    hidden = capture["hidden"].to(device=device, dtype=torch.bfloat16).unsqueeze(0)
+    target = torch.device(device)
+    if target.type not in {"cpu", "cuda"}:
+        raise ValueError(f"unsupported sidecar replay device: {target.type}")
+    hidden = capture["hidden"].to(device=target, dtype=torch.bfloat16).unsqueeze(0)
     indexer = LightningIndexerSidecar().to(device=device, dtype=torch.float32).eval()
     indexer.load_state_dict(load_file(str(checkpoint_path), device=device))
-    positions = torch.arange(hidden.shape[1], device=device).view(1, -1)
-    query_positions = torch.as_tensor(lengths - 1, device=device, dtype=torch.long)
-    with torch.no_grad(), torch.autocast(device_type="cuda", dtype=torch.bfloat16):
+    positions = torch.arange(hidden.shape[1], device=target).view(1, -1)
+    query_positions = torch.as_tensor(lengths - 1, device=target, dtype=torch.long)
+    with torch.no_grad(), torch.autocast(device_type=target.type, dtype=torch.bfloat16):
         keys = indexer.encode_keys(hidden, positions).squeeze(0)
         # Match trace collection's one-query GEMM shape.  Batched projection is
         # mathematically equivalent but can differ by a few BF16 tie-breaks.

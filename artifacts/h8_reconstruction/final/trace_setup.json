@@ -1,0 +1,65 @@
+{
+  "block_size": 64,
+  "calibration_context_lengths": [
+    8192
+  ],
+  "decode_steps_by_split": {
+    "calibration": [
+      64
+    ],
+    "test": [
+      128
+    ],
+    "validation": [
+      128
+    ]
+  },
+  "experiment": "strict_offline_h8_full_score_reconstruction",
+  "gpu_used": false,
+  "head_dimension": 128,
+  "heldout_context_lengths": [
+    8192,
+    16384,
+    32768
+  ],
+  "indexer_heads": 64,
+  "layers": [
+    2,
+    5,
+    8,
+    11,
+    14,
+    17,
+    21,
+    25
+  ],
+  "model": "deepseek-ai/DeepSeek-V2-Lite-Chat research sidecar",
+  "model_inference_run": false,
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "observation_shapes": [
+    [
+      64,
+      8256
+    ],
+    [
+      128,
+      8320
+    ],
+    [
+      128,
+      16512
+    ],
+    [
+      128,
+      32896
+    ]
+  ],
+  "selected_heads": 8,
+  "split_method": "locked prior validation traces for calibration; sequence-level heldout split: code_heldout_4/text_heldout_27454 for model selection, all other heldout sequences for final test",
+  "topk": 2048,
+  "trace_counts": {
+    "calibration": 24,
+    "test": 96,
+    "validation": 48
+  }
+}

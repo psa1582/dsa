@@ -1,0 +1,35 @@
+{
+  "best_hybrid": {
+    "method": "t1_layer",
+    "qk_reduction": 0.21187203471040394,
+    "top128_recall": 0.9997647603352865,
+    "top2048_recall": 0.9864095052083334,
+    "top512_recall": 0.9987122217814127
+  },
+  "best_no_h56": {
+    "formula": "a_l*h8 + b_l*previous_full + c_l",
+    "method": "t1_layer",
+    "qk_reduction": 0.875,
+    "top128_recall": 0.9994023640950521,
+    "top2048_recall": 0.8200755914052328,
+    "top512_recall": 0.9938526153564453
+  },
+  "can_remove_h56_entirely": false,
+  "existing_global_budget_rescue": {
+    "logit_kl_mean": 0.0025926091533065,
+    "mla_relative_l2_p95": 0.0259577026590704,
+    "mla_relative_l2_p99": 0.0801554683595896,
+    "ppl_delta": -0.0049539577363405,
+    "qk_reduction": 0.2012517344586833,
+    "top2048_recall": 0.9955548445383707
+  },
+  "gpu_followup_required": [
+    "MLA output RelL2/cosine",
+    "logit KL",
+    "PPL"
+  ],
+  "gpu_used": false,
+  "offline_only": true,
+  "recommendation": "B_use_reconstruction_for_most_blocks_retain_tiny_h56_fallback",
+  "verdict": "MIXED"
+}

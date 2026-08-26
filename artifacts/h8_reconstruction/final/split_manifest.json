@@ -1,0 +1,17 @@
+{
+  "calibration": [
+    "code_validation_2",
+    "text_validation_2544",
+    "text_validation_25773"
+  ],
+  "test": [
+    "code_heldout_3",
+    "code_heldout_5",
+    "text_heldout_26493",
+    "text_heldout_28444"
+  ],
+  "validation": [
+    "code_heldout_4",
+    "text_heldout_27454"
+  ]
+}
