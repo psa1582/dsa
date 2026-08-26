@@ -1,0 +1,14 @@
+{
+  "verdict": "PROMISING",
+  "next_step": "BUILD MORE DETAILED CYCLE MODEL FIRST",
+  "fpga_topk_only_offload": "NO-GO",
+  "fused_fpga_indexer_topk": "NO-GO FOR RTL AT CONSERVATIVE 1-BF16-MAC/DSP MAPPING",
+  "exact_asic_selector": "GO FOR FLOORPLAN/CYCLE MODEL; NOT RTL SIGN-OFF",
+  "exact_primary": true,
+  "approximate_h8_primary": false,
+  "key_limits": [
+    "64K GPU baseline is an analytical projection because no real 64K sidecar trace exists",
+    "stock Top-K DRAM/L2 counters unavailable; traffic is code-level bounded",
+    "pipelined heap SRAM hazards and comparator timing are not RTL-validated"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "primary_baseline": "Full64 Triton scorer + torch.topk(K=2048, sorted=False)",
+  "trace_inventory": "artifacts/h8_reconstruction/final/trace_inventory.csv",
+  "trace_count": 144,
+  "transitions": 18288,
+  "real_contexts": [
+    8192,
+    16384,
+    32768
+  ],
+  "projected_contexts": [
+    65536
+  ],
+  "gpu": "NVIDIA L40S; new runs isolated to free device; locked measurements preserved",
+  "commands": [
+    "python scripts/analyze_full64_topk_churn.py --repo . --inventory artifacts/h8_reconstruction/final/trace_inventory.csv --output artifacts/streaming_topk/analysis/churn",
+    "python scripts/simulate_exact_topk_heap_admissions.py --repo . --inventory artifacts/h8_reconstruction/final/trace_inventory.csv --output artifacts/streaming_topk/analysis/heap",
+    "python scripts/extract_full64_topk_nsight.py --sqlite-16k artifacts/streaming_topk/raw/progressive_nsight/profile_16k.sqlite --sqlite-32k artifacts/streaming_topk/raw/progressive_nsight/profile_32k.sqlite --output artifacts/streaming_topk/analysis",
+    "CUDA_VISIBLE_DEVICES=0 python scripts/benchmark_full64_topk_decomposition.py --repo . --output artifacts/streaming_topk/raw/decomposition --layer 17 --warmup 100 --measurements 1000",
+    "python scripts/simulate_streaming_topk_hardware.py --progressive-root artifacts/progressive_sw --decomposition-root artifacts/streaming_topk/raw --heap-root artifacts/streaming_topk/analysis/heap --output artifacts/streaming_topk/analysis/hardware",
+    "python scripts/build_streaming_topk_report.py --analysis artifacts/streaming_topk/analysis --progressive-root artifacts/progressive_sw --h8-root artifacts/h8_reconstruction --output artifacts/streaming_topk/final"
+  ],
+  "limitations": [
+    "64K GPU timing is a transparent two-times projection from 32K isolated stages",
+    "ncu unavailable; traffic is code-level/analytical, not measured DRAM/L2 traffic",
+    "heap hazard/banking model is not RTL validated",
+    "sidecar evidence is not a production DeepSeek-V3.2 claim"
+  ]
+}

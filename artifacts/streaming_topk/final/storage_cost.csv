@@ -1,0 +1,11 @@
+component,instances,bytes,note
+Top-2048 FP32 score + INT32 index,1,16384,theoretical minimum candidate state
+Top-2048 FP16/BF16 score + INT32 index,1,12288,reduced-score option; ordering equivalence requires validation
+Double-buffered FP32 candidate heap,2,32768,selected exact model
+Previous Top-2048 IDs,1,8192,HW-B warm-start metadata
+Previous Kth threshold,1,4,ordering hint only; never used as an exact discard certificate
+Selected FPGA total selector SRAM,1,43184,double buffer + previous IDs + FIFO + pipeline scratch
+One-layer BF16 indexer K at 8K,1,2097152,optional on-chip cache; primary model permits HBM streaming
+One-layer BF16 indexer K at 16K,1,4194304,optional on-chip cache; primary model permits HBM streaming
+One-layer BF16 indexer K at 32K,1,8388608,optional on-chip cache; primary model permits HBM streaming
+One-layer BF16 indexer K at 64K,1,16777216,optional on-chip cache; primary model permits HBM streaming

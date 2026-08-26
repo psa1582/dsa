@@ -1,0 +1,65 @@
+context,chunk_size,requested_local_r,effective_local_r,worst_case_exact,classification,candidate_count,candidate_fraction,local_buffer_bytes,full_bitonic_sort_comparator_ops,exactness_reason
+8192,32,8,8,False,APPROXIMATE,2048,0.25,256,61440,a chunk may contribute more than r members of global Top-2048
+8192,32,16,16,False,APPROXIMATE,4096,0.5,256,61440,a chunk may contribute more than r members of global Top-2048
+8192,32,32,32,True,EXACT,8192,1.0,256,61440,r>=B retains every item in each chunk
+8192,32,64,32,True,EXACT,8192,1.0,256,61440,r>=B retains every item in each chunk
+8192,64,8,8,False,APPROXIMATE,1024,0.125,512,86016,a chunk may contribute more than r members of global Top-2048
+8192,64,16,16,False,APPROXIMATE,2048,0.25,512,86016,a chunk may contribute more than r members of global Top-2048
+8192,64,32,32,False,APPROXIMATE,4096,0.5,512,86016,a chunk may contribute more than r members of global Top-2048
+8192,64,64,64,True,EXACT,8192,1.0,512,86016,r>=B retains every item in each chunk
+8192,128,8,8,False,APPROXIMATE,512,0.0625,1024,114688,a chunk may contribute more than r members of global Top-2048
+8192,128,16,16,False,APPROXIMATE,1024,0.125,1024,114688,a chunk may contribute more than r members of global Top-2048
+8192,128,32,32,False,APPROXIMATE,2048,0.25,1024,114688,a chunk may contribute more than r members of global Top-2048
+8192,128,64,64,False,APPROXIMATE,4096,0.5,1024,114688,a chunk may contribute more than r members of global Top-2048
+8192,256,8,8,False,APPROXIMATE,256,0.03125,2048,147456,a chunk may contribute more than r members of global Top-2048
+8192,256,16,16,False,APPROXIMATE,512,0.0625,2048,147456,a chunk may contribute more than r members of global Top-2048
+8192,256,32,32,False,APPROXIMATE,1024,0.125,2048,147456,a chunk may contribute more than r members of global Top-2048
+8192,256,64,64,False,APPROXIMATE,2048,0.25,2048,147456,a chunk may contribute more than r members of global Top-2048
+16384,32,8,8,False,APPROXIMATE,4096,0.25,256,122880,a chunk may contribute more than r members of global Top-2048
+16384,32,16,16,False,APPROXIMATE,8192,0.5,256,122880,a chunk may contribute more than r members of global Top-2048
+16384,32,32,32,True,EXACT,16384,1.0,256,122880,r>=B retains every item in each chunk
+16384,32,64,32,True,EXACT,16384,1.0,256,122880,r>=B retains every item in each chunk
+16384,64,8,8,False,APPROXIMATE,2048,0.125,512,172032,a chunk may contribute more than r members of global Top-2048
+16384,64,16,16,False,APPROXIMATE,4096,0.25,512,172032,a chunk may contribute more than r members of global Top-2048
+16384,64,32,32,False,APPROXIMATE,8192,0.5,512,172032,a chunk may contribute more than r members of global Top-2048
+16384,64,64,64,True,EXACT,16384,1.0,512,172032,r>=B retains every item in each chunk
+16384,128,8,8,False,APPROXIMATE,1024,0.0625,1024,229376,a chunk may contribute more than r members of global Top-2048
+16384,128,16,16,False,APPROXIMATE,2048,0.125,1024,229376,a chunk may contribute more than r members of global Top-2048
+16384,128,32,32,False,APPROXIMATE,4096,0.25,1024,229376,a chunk may contribute more than r members of global Top-2048
+16384,128,64,64,False,APPROXIMATE,8192,0.5,1024,229376,a chunk may contribute more than r members of global Top-2048
+16384,256,8,8,False,APPROXIMATE,512,0.03125,2048,294912,a chunk may contribute more than r members of global Top-2048
+16384,256,16,16,False,APPROXIMATE,1024,0.0625,2048,294912,a chunk may contribute more than r members of global Top-2048
+16384,256,32,32,False,APPROXIMATE,2048,0.125,2048,294912,a chunk may contribute more than r members of global Top-2048
+16384,256,64,64,False,APPROXIMATE,4096,0.25,2048,294912,a chunk may contribute more than r members of global Top-2048
+32768,32,8,8,False,APPROXIMATE,8192,0.25,256,245760,a chunk may contribute more than r members of global Top-2048
+32768,32,16,16,False,APPROXIMATE,16384,0.5,256,245760,a chunk may contribute more than r members of global Top-2048
+32768,32,32,32,True,EXACT,32768,1.0,256,245760,r>=B retains every item in each chunk
+32768,32,64,32,True,EXACT,32768,1.0,256,245760,r>=B retains every item in each chunk
+32768,64,8,8,False,APPROXIMATE,4096,0.125,512,344064,a chunk may contribute more than r members of global Top-2048
+32768,64,16,16,False,APPROXIMATE,8192,0.25,512,344064,a chunk may contribute more than r members of global Top-2048
+32768,64,32,32,False,APPROXIMATE,16384,0.5,512,344064,a chunk may contribute more than r members of global Top-2048
+32768,64,64,64,True,EXACT,32768,1.0,512,344064,r>=B retains every item in each chunk
+32768,128,8,8,False,APPROXIMATE,2048,0.0625,1024,458752,a chunk may contribute more than r members of global Top-2048
+32768,128,16,16,False,APPROXIMATE,4096,0.125,1024,458752,a chunk may contribute more than r members of global Top-2048
+32768,128,32,32,False,APPROXIMATE,8192,0.25,1024,458752,a chunk may contribute more than r members of global Top-2048
+32768,128,64,64,False,APPROXIMATE,16384,0.5,1024,458752,a chunk may contribute more than r members of global Top-2048
+32768,256,8,8,False,APPROXIMATE,1024,0.03125,2048,589824,a chunk may contribute more than r members of global Top-2048
+32768,256,16,16,False,APPROXIMATE,2048,0.0625,2048,589824,a chunk may contribute more than r members of global Top-2048
+32768,256,32,32,False,APPROXIMATE,4096,0.125,2048,589824,a chunk may contribute more than r members of global Top-2048
+32768,256,64,64,False,APPROXIMATE,8192,0.25,2048,589824,a chunk may contribute more than r members of global Top-2048
+65536,32,8,8,False,APPROXIMATE,16384,0.25,256,491520,a chunk may contribute more than r members of global Top-2048
+65536,32,16,16,False,APPROXIMATE,32768,0.5,256,491520,a chunk may contribute more than r members of global Top-2048
+65536,32,32,32,True,EXACT,65536,1.0,256,491520,r>=B retains every item in each chunk
+65536,32,64,32,True,EXACT,65536,1.0,256,491520,r>=B retains every item in each chunk
+65536,64,8,8,False,APPROXIMATE,8192,0.125,512,688128,a chunk may contribute more than r members of global Top-2048
+65536,64,16,16,False,APPROXIMATE,16384,0.25,512,688128,a chunk may contribute more than r members of global Top-2048
+65536,64,32,32,False,APPROXIMATE,32768,0.5,512,688128,a chunk may contribute more than r members of global Top-2048
+65536,64,64,64,True,EXACT,65536,1.0,512,688128,r>=B retains every item in each chunk
+65536,128,8,8,False,APPROXIMATE,4096,0.0625,1024,917504,a chunk may contribute more than r members of global Top-2048
+65536,128,16,16,False,APPROXIMATE,8192,0.125,1024,917504,a chunk may contribute more than r members of global Top-2048
+65536,128,32,32,False,APPROXIMATE,16384,0.25,1024,917504,a chunk may contribute more than r members of global Top-2048
+65536,128,64,64,False,APPROXIMATE,32768,0.5,1024,917504,a chunk may contribute more than r members of global Top-2048
+65536,256,8,8,False,APPROXIMATE,2048,0.03125,2048,1179648,a chunk may contribute more than r members of global Top-2048
+65536,256,16,16,False,APPROXIMATE,4096,0.0625,2048,1179648,a chunk may contribute more than r members of global Top-2048
+65536,256,32,32,False,APPROXIMATE,8192,0.125,2048,1179648,a chunk may contribute more than r members of global Top-2048
+65536,256,64,64,False,APPROXIMATE,16384,0.25,2048,1179648,a chunk may contribute more than r members of global Top-2048

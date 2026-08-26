@@ -1,0 +1,21 @@
+context,operation_order,operation_type,category,stage,short_name,duration_us_first_iteration,gap_from_previous_us_first_iteration,bytes,source
+16384,1,kernel,score,Full64 score,_full_score_kernel,4.512,0.0,,artifacts\streaming_topk\raw\progressive_nsight\profile_16k.sqlite
+16384,2,kernel,topk_gather,final Top-K gather,gatherTopK,55.84,0.736,,artifacts\streaming_topk\raw\progressive_nsight\profile_16k.sqlite
+32768,1,kernel,score,Full64 score,_full_score_kernel,7.616,0.0,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,2,memset,memset,Top-K workspace memset,cudaMemset,0.384,17.632,4.0,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,3,kernel,topk_aux,initialize Top-K workspace,fill,0.832,5.984,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,4,memset,memset,Top-K workspace memset,cudaMemset,0.416,4.864,128.0,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,5,kernel,topk_radix,radix threshold refinement,radixFindKthValues,1.888,4.512,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,6,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,2.56,2.688,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,7,kernel,topk_radix,radix threshold refinement,radixFindKthValues,1.888,1.76,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,8,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,2.56,2.208,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,9,kernel,topk_radix,radix threshold refinement,radixFindKthValues,1.856,1.728,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,10,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,2.528,2.24,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,11,kernel,topk_radix,radix threshold refinement,radixFindKthValues,1.856,1.76,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,12,kernel,topk_count,blockwise within-K count,computeBlockwiseWithinKCounts,2.56,2.4,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,13,kernel,topk_count,blockwise Kth count,computeBlockwiseKthCounts,1.152,1.536,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,14,kernel,topk_scan,scan-by-key initialization,DeviceScanByKeyInitKernel,0.832,8.992,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,15,kernel,topk_scan,scan-by-key,DeviceScanByKeyKernel,2.016,6.464,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,16,kernel,topk_scan,scan-by-key initialization,DeviceScanByKeyInitKernel,0.864,8.032,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,17,kernel,topk_scan,scan-by-key,DeviceScanByKeyKernel,2.08,5.248,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite
+32768,18,kernel,topk_gather,final Top-K gather,gatherTopK,3.84,3.968,,artifacts\streaming_topk\raw\progressive_nsight\profile_32k.sqlite

@@ -1,0 +1,9 @@
+context,system,indexer_k_read_bytes,dense_score_write_bytes,selection_score_read_bytes_lower,selection_score_read_bytes_upper,full_or_partial_score_passes_lower,full_or_partial_score_passes_signature_upper,final_result_bytes,total_offchip_bytes_lower,total_offchip_bytes_upper,traffic_status,intermediate_note
+8192,GPU dense score + stock Top-K,2097152,32768,32768,32768,1,1,24576,2187264,2187264,CODE-LEVEL / ANALYTICAL ESTIMATE,"Top-K workspace traffic not counter-measured; 32K upper bound counts four radix, four within-K count, and one gather score pass"
+8192,Fused streaming exact Top-K,2097152,0,0,0,0,0,8192,2105344,2105344,CODE-LEVEL / ANALYTICAL ESTIMATE,candidate heap/FIFO remains on chip
+16384,GPU dense score + stock Top-K,4194304,65536,65536,65536,1,1,24576,4349952,4349952,CODE-LEVEL / ANALYTICAL ESTIMATE,"Top-K workspace traffic not counter-measured; 32K upper bound counts four radix, four within-K count, and one gather score pass"
+16384,Fused streaming exact Top-K,4194304,0,0,0,0,0,8192,4202496,4202496,CODE-LEVEL / ANALYTICAL ESTIMATE,candidate heap/FIFO remains on chip
+32768,GPU dense score + stock Top-K,8388608,131072,131072,1179648,1,9,24576,8675328,9723904,CODE-LEVEL / ANALYTICAL ESTIMATE,"Top-K workspace traffic not counter-measured; 32K upper bound counts four radix, four within-K count, and one gather score pass"
+32768,Fused streaming exact Top-K,8388608,0,0,0,0,0,8192,8396800,8396800,CODE-LEVEL / ANALYTICAL ESTIMATE,candidate heap/FIFO remains on chip
+65536,GPU dense score + stock Top-K,16777216,262144,262144,2359296,1,9,24576,17326080,19423232,CODE-LEVEL / ANALYTICAL ESTIMATE,"Top-K workspace traffic not counter-measured; 32K upper bound counts four radix, four within-K count, and one gather score pass"
+65536,Fused streaming exact Top-K,16777216,0,0,0,0,0,8192,16785408,16785408,CODE-LEVEL / ANALYTICAL ESTIMATE,candidate heap/FIFO remains on chip
