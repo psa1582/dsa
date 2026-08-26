@@ -1,0 +1,17 @@
+{
+  "verdict": "ALGORITHM-PROMISING-BUT-SOFTWARE-SLOW",
+  "performance_primary": {
+    "block_size": 64,
+    "promotion_target": 0.1,
+    "topk": 2048,
+    "output": "dense_-inf",
+    "head_selection": "dynamic_abs_w_for_quality; fixed avoids routing but did not rescue latency conclusion"
+  },
+  "fallback": "optimized_full",
+  "do_not_promote": [
+    "fused_compact",
+    "two_pass",
+    "D32_to_H8"
+  ],
+  "reason": "Primary fused indexer+TopK is slower than optimized full at 8K/16K/32K."
+}

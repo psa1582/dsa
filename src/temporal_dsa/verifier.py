@@ -181,6 +181,7 @@ def verifier_step(
     step: int,
     previous_length: int | None = None,
     tail_critical_blocks: np.ndarray | None = None,
+    promotion_threshold: float | None = None,
 ) -> tuple[ApproxState, dict[str, Any], dict[str, np.ndarray]]:
     """Run temporal filtering, current-query verification and exact rerank."""
 
@@ -206,11 +207,16 @@ def verifier_step(
         verifier_scores, cold_mask, config.block_size
     )
     ranking = _rank_blocks(block_scores, cold_blocks)
-    rescue_count = min(
-        ranking.size,
-        int(math.ceil(config.rescue_fraction * int(cold_blocks.sum()))),
-    )
-    rescued_blocks = ranking[:rescue_count]
+    if promotion_threshold is None:
+        rescue_count = min(
+            ranking.size,
+            int(math.ceil(config.rescue_fraction * int(cold_blocks.sum()))),
+        )
+        rescued_blocks = ranking[:rescue_count]
+        promotion_policy = "global_budget"
+    else:
+        rescued_blocks = ranking[block_scores[ranking] >= float(promotion_threshold)]
+        promotion_policy = "fixed_threshold"
     state, approximate, exact_ids = apply_rescue_to_state(
         previous_state,
         temporal_next,
@@ -300,8 +306,16 @@ def verifier_step(
         "width": config.width,
         "block_size": config.block_size,
         "rescue_fraction": config.rescue_fraction,
+        "promotion_policy": promotion_policy,
+        "promotion_threshold": (
+            math.nan if promotion_threshold is None else float(promotion_threshold)
+        ),
+        "promotion_fraction_of_cold": float(
+            rescued_blocks.size / max(1, int(cold_blocks.sum()))
+        ),
         "temporal_exact_tokens": temporal_exact,
         "cold_tokens_scanned": verifier_tokens,
+        "cold_blocks_scanned": int(cold_blocks.sum()),
         "rescue_blocks": int(rescued_blocks.size),
         "rescue_exact_tokens": rescue_new,
         "candidate_union_tokens": int(exact_ids.size),
@@ -371,6 +385,7 @@ def replay_verifier_trace(
     max_transitions: int | None = None,
     tail_labels: dict[int, np.ndarray] | None = None,
     detail_callback: Callable[[int, dict[str, np.ndarray]], None] | None = None,
+    promotion_threshold: float | Callable[[int, int], float] | None = None,
 ) -> pd.DataFrame:
     """Replay one trace with precomputed or lazily generated verifier scores."""
 
@@ -386,6 +401,11 @@ def replay_verifier_trace(
             if callable(verifier_scores)
             else verifier_scores[step, :length]
         )
+        threshold = (
+            promotion_threshold(step, length)
+            if callable(promotion_threshold)
+            else promotion_threshold
+        )
         state, metrics, details = verifier_step(
             state,
             trace.row(step),
@@ -396,6 +416,7 @@ def replay_verifier_trace(
             step=step,
             previous_length=int(trace.lengths[step - 1]),
             tail_critical_blocks=None if tail_labels is None else tail_labels.get(step),
+            promotion_threshold=threshold,
         )
         metrics.update(
             {

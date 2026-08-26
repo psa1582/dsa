@@ -6,6 +6,7 @@ from pathlib import Path
 import platform
 import time
 from typing import Any
+from difflib import SequenceMatcher
 
 import pandas as pd
 import torch
@@ -84,6 +85,42 @@ def niah_tokens(tokenizer: Any, context_length: int) -> list[int]:
     return tokens
 
 
+def ruler_tokens(
+    tokenizer: Any,
+    context_length: int,
+    *,
+    intro: str,
+    needles: list[str],
+    question: str,
+) -> list[int]:
+    prefix = tokenizer(intro, add_special_tokens=True)["input_ids"]
+    needle_tokens = [
+        tokenizer(f"\nIMPORTANT RECORD: {value}\n", add_special_tokens=False)["input_ids"]
+        for value in needles
+    ]
+    suffix = tokenizer(question, add_special_tokens=False)["input_ids"]
+    filler = tokenizer(
+        " The archive contains routine entries about weather, roads, gardens, books, and dates.",
+        add_special_tokens=False,
+    )["input_ids"]
+    needed = context_length - len(prefix) - len(suffix) - sum(map(len, needle_tokens))
+    if needed <= 0:
+        raise ValueError("context too short")
+    repeated = (filler * ((needed + len(filler) - 1) // len(filler)))[:needed]
+    segments = []
+    previous = 0
+    for index, needle in enumerate(needle_tokens, start=1):
+        stop = round(index * len(repeated) / (len(needle_tokens) + 1))
+        segments.extend(repeated[previous:stop])
+        segments.extend(needle)
+        previous = stop
+    segments.extend(repeated[previous:])
+    tokens = prefix + segments + suffix
+    if len(tokens) != context_length:
+        raise RuntimeError("RULER token construction length mismatch")
+    return tokens
+
+
 def first_divergence(baseline: list[int], approximate: list[int]) -> int | None:
     for index, (left, right) in enumerate(zip(baseline, approximate), start=1):
         if left != right:
@@ -107,6 +144,7 @@ def main() -> None:
     parser.add_argument("--role", default="Aggressive")
     parser.add_argument("--local-files-only", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--extended-tasks", action="store_true")
     args = parser.parse_args()
 
     from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
@@ -174,15 +212,79 @@ def main() -> None:
     code_raw = tokenizer(code_prompt["text"], add_special_tokens=True)["input_ids"]
     rows: list[dict[str, Any]] = []
     for context_length in args.contexts:
-        samples = [
-            ("ruler_niah_small", "niah", niah_tokens(tokenizer, context_length)),
+        code_tokens = fit_tokens(code_raw, context_length + args.steps)
+        samples: list[tuple[str, str, list[int], str | None, list[int] | None]] = [
+            ("ruler_niah_single", "niah", niah_tokens(tokenizer, context_length), "KOREA1582", None),
             (
                 "long_code_completion",
                 args.code_prompt_id,
-                fit_tokens(code_raw, context_length),
+                code_tokens[:context_length],
+                None,
+                code_tokens[context_length : context_length + args.steps],
             ),
         ]
-        for benchmark, prompt_id, tokens in samples:
+        if args.extended_tasks:
+            samples.extend(
+                [
+                    (
+                        "ruler_niah_multi",
+                        "niah_multi",
+                        ruler_tokens(
+                            tokenizer,
+                            context_length,
+                            intro="Remember both key-value records exactly.\n",
+                            needles=["BLUE KEY = ORBIT1582", "GREEN KEY = HARBOR7021"],
+                            question=(
+                                "\nQuestion: Give the BLUE KEY and GREEN KEY values in that order. "
+                                "Answer with only the two values.\nAnswer:"
+                            ),
+                        ),
+                        "ORBIT1582 HARBOR7021",
+                        None,
+                    ),
+                    (
+                        "ruler_variable_tracking",
+                        "variable_tracking",
+                        ruler_tokens(
+                            tokenizer,
+                            context_length,
+                            intro="Track the variable DELTA through every update.\n",
+                            needles=[
+                                "DELTA = COPPER17",
+                                "DELTA = RIVER29",
+                                "DELTA = NEBULA42",
+                            ],
+                            question=(
+                                "\nQuestion: What is the final value of DELTA? "
+                                "Answer with only the value.\nAnswer:"
+                            ),
+                        ),
+                        "NEBULA42",
+                        None,
+                    ),
+                    (
+                        "ruler_aggregation",
+                        "aggregation",
+                        ruler_tokens(
+                            tokenizer,
+                            context_length,
+                            intro="Add all values marked COUNT_ITEM.\n",
+                            needles=[
+                                "COUNT_ITEM = 17",
+                                "COUNT_ITEM = 23",
+                                "COUNT_ITEM = 41",
+                            ],
+                            question=(
+                                "\nQuestion: What is the sum of all COUNT_ITEM values? "
+                                "Answer with only the integer.\nAnswer:"
+                            ),
+                        ),
+                        "81",
+                        None,
+                    ),
+                ]
+            )
+        for benchmark, prompt_id, tokens, expected_text, expected_tokens in samples:
             baseline, baseline_seconds = greedy_tokens(
                 model, controller, "baseline", {}, tokens, args.steps
             )
@@ -198,6 +300,29 @@ def main() -> None:
             agreement = sum(a == b for a, b in zip(baseline, approximate)) / args.steps
             baseline_text = tokenizer.decode(baseline, skip_special_tokens=True)
             approximate_text = tokenizer.decode(approximate, skip_special_tokens=True)
+            if expected_text is not None:
+                baseline_success = all(
+                    value in baseline_text for value in expected_text.split()
+                )
+                approximate_success = all(
+                    value in approximate_text for value in expected_text.split()
+                )
+                baseline_ground_truth = None
+                approximate_ground_truth = None
+            elif expected_tokens is not None:
+                baseline_ground_truth = sum(
+                    left == right for left, right in zip(baseline, expected_tokens)
+                ) / len(expected_tokens)
+                approximate_ground_truth = sum(
+                    left == right for left, right in zip(approximate, expected_tokens)
+                ) / len(expected_tokens)
+                baseline_success = None
+                approximate_success = None
+            else:
+                baseline_success = None
+                approximate_success = None
+                baseline_ground_truth = None
+                approximate_ground_truth = None
             rows.append(
                 {
                     "benchmark": benchmark,
@@ -209,11 +334,19 @@ def main() -> None:
                     "verifier": verifier_spec["name"],
                     "first_divergence_step": first_divergence(baseline, approximate),
                     "generated_token_agreement": agreement,
-                    "baseline_task_success": (
-                        "KOREA1582" in baseline_text if benchmark == "ruler_niah_small" else None
+                    "baseline_task_success": baseline_success,
+                    "approx_task_success": approximate_success,
+                    "baseline_ground_truth_token_accuracy": baseline_ground_truth,
+                    "approx_ground_truth_token_accuracy": approximate_ground_truth,
+                    "baseline_expected_edit_similarity": (
+                        None
+                        if expected_tokens is None
+                        else SequenceMatcher(None, baseline, expected_tokens).ratio()
                     ),
-                    "approx_task_success": (
-                        "KOREA1582" in approximate_text if benchmark == "ruler_niah_small" else None
+                    "approx_expected_edit_similarity": (
+                        None
+                        if expected_tokens is None
+                        else SequenceMatcher(None, approximate, expected_tokens).ratio()
                     ),
                     "baseline_decode_seconds": baseline_seconds,
                     "approx_decode_seconds": approximate_seconds,
@@ -240,10 +373,10 @@ def main() -> None:
             else int(frame.first_divergence_step.dropna().min())
         ),
         "niah_baseline_success_rate": float(
-            frame.loc[frame.benchmark == "ruler_niah_small", "baseline_task_success"].mean()
+            frame.loc[frame.benchmark == "ruler_niah_single", "baseline_task_success"].mean()
         ),
         "niah_approx_success_rate": float(
-            frame.loc[frame.benchmark == "ruler_niah_small", "approx_task_success"].mean()
+            frame.loc[frame.benchmark == "ruler_niah_single", "approx_task_success"].mean()
         ),
     }
     (args.output / "closed_loop_summary.json").write_text(

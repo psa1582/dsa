@@ -1,0 +1,17 @@
+benchmark,context,baseline_task_success,threshold_task_success,baseline_ground_truth_token_accuracy,threshold_ground_truth_token_accuracy,status
+ruler_niah_single,8192.0,True,True,,,measured_local
+long_code_completion,8192.0,,,0.1328125,0.125,measured_local
+ruler_niah_multi,8192.0,True,True,,,measured_local
+ruler_variable_tracking,8192.0,False,False,,,measured_local
+ruler_aggregation,8192.0,True,True,,,measured_local
+ruler_niah_single,16384.0,True,True,,,measured_local
+long_code_completion,16384.0,,,0.140625,0.03125,measured_local
+ruler_niah_multi,16384.0,True,True,,,measured_local
+ruler_variable_tracking,16384.0,False,False,,,measured_local
+ruler_aggregation,16384.0,False,False,,,measured_local
+ruler_niah_single,32768.0,True,True,,,measured_local
+long_code_completion,32768.0,,,0.03125,0.03125,measured_local
+ruler_niah_multi,32768.0,True,True,,,measured_local
+ruler_variable_tracking,32768.0,False,False,,,measured_local
+ruler_aggregation,32768.0,False,False,,,measured_local
+LongBench,,,,,,not_run_no_local_harness

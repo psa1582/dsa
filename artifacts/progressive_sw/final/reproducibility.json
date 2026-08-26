@@ -1,0 +1,69 @@
+{
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite; not production V3.2",
+  "model_revision": "85864749cd611b4353ce1decdb286193298f64c7",
+  "git_base_commit": "c4c8075368fefd834051a324cf564160f1090eca (base; report built before final commit)",
+  "gpu": "NVIDIA L40S x2 visible; measurements on cuda:0",
+  "visible_devices": [
+    0,
+    1
+  ],
+  "timing": "CUDA events; 50 warmups; 500 measurements; 64 MiB flush; 3 real-trace rotation",
+  "benchmark_grid": {
+    "contexts": [
+      8192,
+      16384,
+      32768
+    ],
+    "block_sizes": [
+      32,
+      64,
+      128
+    ],
+    "promotion_targets": [
+      0.05,
+      0.1,
+      0.15,
+      0.2
+    ],
+    "topk": [
+      512,
+      1024,
+      2048
+    ]
+  },
+  "tests_passed": 42,
+  "ncu": "not installed; hardware DRAM/L2/SM/occupancy counters unavailable",
+  "graphs": [
+    "01_full_two_pass_fused_latency.png",
+    "02_context_vs_indexer_speedup.png",
+    "03_promotion_rate_vs_latency.png",
+    "04_promotion_rate_vs_mla_rell2.png",
+    "05_promotion_rate_vs_ppl_task.png",
+    "06_qk_reduction_vs_actual_latency_reduction.png",
+    "07_dram_bytes_vs_latency.png",
+    "08_sm_utilization_vs_context.png",
+    "09_topk_fraction_of_total_latency.png",
+    "10_dense_vs_compact_output.png",
+    "11_dynamic_vs_fixed_h8.png",
+    "12_kernel_launch_timeline.png",
+    "13_physical_traffic_before_after.png",
+    "14_candidate_count_vs_topk_latency.png",
+    "15_research_sidecar_tpot_speedup.png"
+  ],
+  "output_sha256": {
+    "fused_progressive_timing.csv": "f9a16766dd5bd630a67268942b51b91217d61cbb57fd4c5fd682b8a4a18d935c",
+    "task_quality.csv": "39ee4253dc56b252ca5efcccbedc40e373d1c3b74dcb4af2158a9dd026ed1c07",
+    "full_baseline_timing.csv": "427685ad3af29729b331fe8595e3794c3205acbd0cd08b42ec7b93ccc6595fbe",
+    "software_verdict.json": "81b2a20297a87f1790e31a8f502984d403ea150ce739b55a67893e04a6157fdb",
+    "selected_software_configs.json": "08613a9996fa4c2a0901be14b2ef07905859fa5386276a2b9b27cd5e91baf202",
+    "teacher_forced_quality.csv": "6a12fb9682245b8b990ac9e34288038ee302e4be6852f44be5dc43aa1f64606a",
+    "kernel_breakdown.csv": "012ad4f27a94979de0d6f41c1a154ff54b2881e470142a49c6ba33d8d72d1afb",
+    "progressive_dsa_software_report.md": "68296dcd198187b85a0bb6f56109fa8ce429c6b9ab02e0fb3638298520cd3b9f",
+    "two_pass_timing.csv": "c5d7da976f38f48d154c7e379ef0e241483e06c63d9f4359c8ea5dcd8551a2c4",
+    "fixed_vs_dynamic_heads.csv": "89989321ca89dca212f728b37d0fca7c03606f6f8c294ae761458546bcd93948",
+    "promotion_quality.csv": "b0ae8e28611e3cb9abe62b0047decab901eae556b57482c3557283f6da3b9ec6",
+    "candidate_topk_results.csv": "ba8e794719f487d23152f1607e772cedab2b9f6814f3c35c7730048ccff0cb29",
+    "nsight_summary.csv": "7dfb3d69e4e326091629009bd46770808d92b9c1ab5f02e0a6c5342a531ddf33",
+    "closed_loop_quality.csv": "5f0e7e2689e37dbd76b052bfca74b23a37e6885fccefb583d5cf1d9988f22efb"
+  }
+}

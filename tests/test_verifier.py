@@ -85,3 +85,46 @@ def test_cost_includes_verifier_and_candidate_rerank() -> None:
         metrics["temporal_exact_tokens"] + metrics["rescue_exact_tokens"]
     )
     assert metrics["physical_b64_key_byte_reduction"] <= 0
+
+
+def test_fixed_threshold_promotes_all_blocks_at_or_above_cutoff() -> None:
+    previous = np.zeros(32, dtype=np.float32)
+    previous[:4] = 3
+    current = previous.copy()
+    current[16:20] = 10
+    verifier = np.zeros_like(current)
+    verifier[8:16] = 4
+    verifier[16:24] = 5
+    state = initialize_state(previous, k=4, block_size=8)
+    _, metrics, details = verifier_step(
+        state,
+        current,
+        verifier,
+        policy=ApproxPolicy(name="static", gamma=0),
+        config=_config(rescue_fraction=0),
+        k=4,
+        step=1,
+        previous_length=32,
+        promotion_threshold=5,
+    )
+    assert metrics["promotion_policy"] == "fixed_threshold"
+    assert metrics["promotion_threshold"] == 5
+    assert np.array_equal(details["rescued_blocks"], np.asarray([2]))
+
+
+def test_fixed_threshold_tie_break_is_block_address_stable() -> None:
+    values = np.zeros(32, dtype=np.float32)
+    values[:4] = 3
+    state = initialize_state(values, k=4, block_size=8)
+    _, _, details = verifier_step(
+        state,
+        values,
+        np.ones_like(values),
+        policy=ApproxPolicy(name="static", gamma=0),
+        config=_config(rescue_fraction=0),
+        k=4,
+        step=1,
+        previous_length=32,
+        promotion_threshold=1,
+    )
+    assert np.array_equal(details["rescued_blocks"], np.arange(1, 4))

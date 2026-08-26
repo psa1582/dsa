@@ -1,0 +1,29 @@
+{
+  "verdict": "ALGORITHM-PROMISING-BUT-SOFTWARE-SLOW",
+  "go": false,
+  "production_v3_2_claim": false,
+  "primary_speedup_vs_full": {
+    "8192": 0.6529201161863104,
+    "16384": 0.8985506925446108,
+    "32768": 0.8320587357146405
+  },
+  "primary_speedup_vs_two_pass": {
+    "8192": 1.426229541438131,
+    "16384": 1.2028985094621192,
+    "32768": 1.2823492861379662
+  },
+  "nearest_actual_rate_r20_speedup_vs_full": {
+    "8192": 0.6557377010072784,
+    "16384": 0.9841269786273943,
+    "32768": 0.8252427273623768
+  },
+  "quality": {
+    "threshold_actual_promotion_rate": 0.2935971497616215,
+    "net_qk_reduction_median": 0.1398273473626906,
+    "mla_rell2_p95": 0.0261291960254311,
+    "teacher_ppl_delta": -0.0044188011267813,
+    "logit_kl_mean": 0.0024889039901007
+  },
+  "profiling_limit": "ncu unavailable; no measured DRAM/L2/SM/occupancy counters",
+  "reason": "Fused is faster than two-pass but slower than optimized full at every primary context."
+}

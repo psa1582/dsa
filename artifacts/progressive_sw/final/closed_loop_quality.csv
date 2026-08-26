@@ -1,0 +1,239 @@
+benchmark,prompt_id,context_length,steps,policy,selection_role,verifier,first_divergence_step,generated_token_agreement,baseline_task_success,approx_task_success,baseline_ground_truth_token_accuracy,approx_ground_truth_token_accuracy,baseline_expected_edit_similarity,approx_expected_edit_similarity,baseline_decode_seconds,approx_decode_seconds,baseline_text,approx_text
+ruler_niah_single,niah,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,52.0,0.3984375,True,True,,,,,12.104131110943854,16.67643486801535," KOREA1582# 2023年10月20日宜忌
+
+2023年10月20日，农历九月初六，星期五。
+
+【宜】祭祀、沐浴、修饰垣墙、平治道涂、余事勿取
+
+【忌】诸事不宜
+
+【冲】冲龙(壬辰)煞北
+
+【胎神占方】房床栖外正南
+
+【彭祖百忌】戊不受田田主不祥 戌不吃犬作怪上床"," KOREA1582# 2023年10月20日宜忌
+
+2023年10月20日，农历九月初六，星期五。
+
+【宜】嫁娶 祭祀 祈福 求嗣 开光 出行 解除 出火 进人口 开市 交易 立券 挂匾 纳财 入宅 移徙 栽种 破土 谢土
+
+【忌】安床 安葬
+
+【冲】冲鼠煞北
+
+2"
+long_code_completion,code_heldout_3,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,49.0,0.5078125,,,0.1328125,0.125,0.359375,0.3359375,10.662180017214268,16.448673129081726,"""):
+                break
+        return bytes(res)
+
+    def readlines(self, hint=-1):
+        r""""""Return a list of lines from the stream.
+
+        If hint is specified, at most hint lines will be read.
+        Hint should be an int.
+
+        The lines are returned as bytes.
+        """"""
+        lines = []
+        while hint < 0 or len(lines) < hint:
+            line = self.readline()
+            if not line:
+                break
+            lines.append(line)
+        return lines
+
+    def write","""):
+                break
+        return bytes(res)
+
+    def readlines(self, hint=-1):
+        r""""""Return a list of lines from the stream.
+
+        If hint is specified, at most hint bytes will be read.
+        Hint should be an int.
+
+        The line terminator is always b'\n' for binary files; for text
+        files, the newlines argument to open can be used to select the line
+        terminator(s) recognized.
+        """"""
+        res = []
+        while hint < 0 or len(res) < hint"
+ruler_niah_multi,niah_multi,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,111.0,0.859375,True,True,,,,,10.632980616763234,16.741468159947544," ORBIT1582, HARBOR7021# 1. 문제 설명
+
+문자열 s의 길이가 4혹은 6이고, 숫자로만 구성되어 있는 문자열을 매개변수로 받습니다.
+s가 주어집니다. s가 �"," ORBIT1582, HARBOR7021# 1. 문제 설명
+
+문자열 s의 길이가 4혹은 6이고, 숫자로만 구성되어 있는 문자열을 매개변수로 받습니다.
+
+s가 주어집니다. s가 �"
+ruler_variable_tracking,variable_tracking,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,11.0,0.0859375,False,False,,,,,10.640624681022018,16.6713997120969," COPPER17# 1. Introduction
+
+This document describes the process of creating a new project in the [Open edX platform](https://edx.org/open-edx).
+
+# 2. Prerequisites
+
+Before starting, you need to have:
+
+- A GitHub account
+- Basic knowledge of Git
+- Basic knowledge of Python
+- Basic knowledge of HTML, CSS, and JavaScript
+- Docker installed on your machine
+
+# 3. Steps to create a new project
+
+## 3.1. Create a new repository
+
+1. Go to your"," COPPER17# 1. 데이터 분석을 위한 기본 개념
+
+## 1.1. 데이터 분석의 정의
+데이터 분석은 데이터를 조작하고 해석하여 의사 결정을 위한 정보를 제"
+ruler_aggregation,aggregation,8192,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,46.0,0.3671875,True,True,,,,,10.63749805931002,16.64304396044463," 17+23+41=81# 1. 문제 설명
+
+문자열 s의 길이가 4혹은 6이고, 숫자로만 구성되어 있는 문자열을 매개변수로 받습니다.
+
+s가 주어집니다. s가 주"," 17+23+41=81# 1. 문제 설명
+
+문자열 s의 길이를 나타내는 정수 n이 주어졌을 때, s를 역순으로 정렬하여 반환하는 함수를 작성하세요.
+
+## 제한"
+ruler_niah_single,niah,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,16.0,0.125,True,True,,,,,13.688994438387454,20.960158684756607," KOREA1582# 1. 데이터 분석을 위한 기본 개념
+
+## 1.1 데이터 분석의 정의
+데이터 분석은 데이터를 조작하고 해석하여 의사 결정을 위한 정보를"," KOREA1582# 1. 문제 설명
+
+문자열로 구성된 리스트를 입력받아 가장 많이 사용된 단어와 그 사용한 횟수를 찾는 함수를 작성하세요.
+
+단�"
+long_code_completion,code_heldout_3,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,6.0,0.0703125,,,0.140625,0.03125,0.3984375,0.3671875,12.324774477165192,20.328400303144008," if mode == 'r':
+            self._readable = True
+            self._writable = False
+            self._appending = False
+        elif mode == 'w':
+            self._readable = False
+            self._writable = True
+            self._appending = False
+        elif mode == 'x':
+            self._readable = False
+            self._writable = True
+            self._appending = True
+        elif mode == 'a':
+            self._readable = False
+            self._writable = True
+            self._appending = True
+        elif mode == 'b':"," if mode == 'r' or mode == 'rb':
+            self._readable = True
+        if mode == 'w' or mode == 'wb':
+            self._writable = True
+        if mode == 'x' or mode == 'xb':
+            self._writable = True
+            self._created = True
+        if mode == 'a' or mode == 'ab':
+            self._appending = True
+
+        if closefd:
+            self._closefd = True
+        else:
+            self._closefd = False
+
+        if opener is not None:"
+ruler_niah_multi,niah_multi,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,45.0,0.3671875,True,True,,,,,12.30042124306783,20.65231094416231," ORBIT1582, HARBOR7021# 1. Introduction
+
+This document provides a detailed guide on how to use the `pyttsx3` library in Python to convert text to speech. `pyttsx3` is a text-to-speech conversion library that supports a variety of languages and voices. It is a wrapper around the `pyttsy` library, which in turn is a wrapper around the `eSpeak` and `festival` text-to-speech engines.
+
+# 2. Installation
+
+To install `pytts"," ORBIT1582, HARBOR7021# 1. Introduction
+
+This document provides a detailed guide on how to use the `pyttsx3` library in Python. `pyttsx3` is a text-to-speech conversion library that can convert text into speech. It supports multiple languages and can be used in various applications, including text editors, web applications, and games.
+
+# 2. Installation
+
+To install `pyttsx3`, you can use pip, Python's package installer. Open your terminal or command prompt and run the"
+ruler_variable_tracking,variable_tracking,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,,1.0,False,False,,,,,12.31843780959025,20.24171662470326," RIVER29# Track the variable DELTA through every update.
+
+The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather,"," RIVER29# Track the variable DELTA through every update.
+
+The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather,"
+ruler_aggregation,aggregation,16384,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,,1.0,False,False,,,,,12.309579547960311,20.491023445036262," 104Question: What is the sum of all COUNT_ITEM values?
+
+To find the sum of all COUNT_ITEM values, we need to look at the text provided and count the occurrences of the word ""COUNT_ITEM"".
+
+Let's analyze the text:
+
+""Add all values marked COUNT_ITEM. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine"," 104Question: What is the sum of all COUNT_ITEM values?
+
+To find the sum of all COUNT_ITEM values, we need to look at the text provided and count the occurrences of the word ""COUNT_ITEM"".
+
+Let's analyze the text:
+
+""Add all values marked COUNT_ITEM. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine"
+ruler_niah_single,niah,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,,1.0,True,True,,,,,17.458122276701033,28.79693934507668," KOREA1582A fact is hidden in the following notes. Remember it exactly.
+ The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books"," KOREA1582A fact is hidden in the following notes. Remember it exactly.
+ The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books, roads, and garden notes. The archive records ordinary weather, books"
+long_code_completion,code_heldout_3,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,12.0,0.109375,,,0.03125,0.03125,0.40625,0.3984375,16.080003234092146,28.8451918871142,", exc)
+                else:
+                    logger.warning(""%s"", message)
+                self._loop.call_exception_handler({
+                    'event_loop': self._loop,
+                    'exc_info': (exc,),
+                    'source': self,
+                })
+            else:
+                raise exc
+        except:
+            self._loop.call_exception_handler({
+                'event_loop': self._loop,
+                'exc_info': sys.exc_info(),
+                'source': self,
+            })
+        self._closing = True",", exc)
+                else:
+                    logger.error(""%s: %s"", message, exc)
+            else:
+                logger.error(""%s: %s"", message, exc)
+        finally:
+            self._loop.call_soon(self._call_connection_lost, None)
+
+    def _call_connection_lost(self, exc):
+        if self._called_connection_lost:
+            return
+        self._called_connection_lost = True
+        self._protocol.connection_lost(exc)
+
+    def _wake_up_read("
+ruler_niah_multi,niah_multi,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,37.0,0.3359375,True,True,,,,,16.066319623962045,28.89848352316767," BLUE KEY = ORBIT1582, GREEN KEY = HARBOR7021Question: What is the difference between the two numbers?
+
+A. 10
+B. 20
+C. 30
+D. 40
+E. 50
+
+In this question, we are given two numbers and we need to find the difference between them.
+
+To find the difference between two numbers, we subtract the smaller number from the larger number.
+
+Let's assume the two numbers are 20 and 30.
+
+Difference ="," BLUE KEY = ORBIT1582, GREEN KEY = HARBOR7021Question: What is the difference between the two numbers?
+
+1. 123456789
+2. 987654321
+
+Answer: 864192632Question: What is the difference between the two numbers?
+
+1. 123456789
+2. 987654321
+
+Answer: 86419263"
+ruler_variable_tracking,variable_tracking,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,,1.0,False,False,,,,,16.0689454828389,28.654024831019345," COPPER17# Track the variable DELTA through every update.
+
+The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather,"," COPPER17# Track the variable DELTA through every update.
+
+The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather, roads, gardens, books, and dates. The archive contains routine entries about weather,"
+ruler_aggregation,aggregation,32768,128,streak2_bucket8_m0,Aggressive,head_dynamic_abs_w_w8_b64_threshold_r0.1,38.0,0.3046875,False,False,,,,,16.059129517059773,29.718880739994347," 108# 1. 문제 설명
+
+문자열 s의 길이가 4혹은 6이고, 숫자로만 구성되있는 문자열을 올바른 숫자형태의 문자열이라고 판단한다. 올바�"," 108# 1. 문제 설명
+
+문자열 s의 길이를 나타내는 정수 n이 주어집니다. 문자열 s를 한 줄로 입력받아 문자열을 반환하는 함수를 작성해주세�"

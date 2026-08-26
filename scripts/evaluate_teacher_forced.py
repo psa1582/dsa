@@ -214,6 +214,11 @@ class SparseTeacherController:
                 k=self.k,
                 step=step,
                 previous_length=score_vector.size - 1,
+                promotion_threshold=(
+                    None
+                    if "promotion_threshold_by_layer" not in self.verifier_spec
+                    else float(self.verifier_spec["promotion_threshold_by_layer"][str(layer)])
+                ),
             )
         else:
             state, _, detail = replay_step(
