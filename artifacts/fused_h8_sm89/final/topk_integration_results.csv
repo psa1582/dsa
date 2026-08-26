@@ -1,0 +1,3 @@
+status,reason,context,scoring_speedup_vs_fastest_full,scoring_plus_topk_speedup,sidecar_tpot_impact
+SKIPPED_BY_EARLY_STOP,K6 scoring did not reach 1.05x versus fastest optimized full baseline,16384,0.8333333333333334,,
+SKIPPED_BY_EARLY_STOP,K6 scoring did not reach 1.05x versus fastest optimized full baseline,32768,0.8684210979803473,,

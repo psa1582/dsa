@@ -1,0 +1,60 @@
+
+Fatbin elf code:
+================
+arch = sm_89
+code version = [1,7]
+host = linux
+compile_size = 64bit
+identifier = /home/psa1582/temporal-dsa-pilot/cuda/fused_h8_sm89/kernels.cu
+
+Resource usage:
+ Common:
+  GLOBAL:11 CONSTANT[4]:88
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b28fused_online_pipeline_kernelILi4EEEvPK13__nv_bfloat16PKfS3_PKbfPfPbS8_ii:
+  REG:255 STACK:32 SHARED:33024 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b28fused_online_pipeline_kernelILi1EEEvPK13__nv_bfloat16PKfS3_PKbfPfPbS8_ii:
+  REG:255 STACK:0 SHARED:33024 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b28fused_online_pipeline_kernelILi0EEEvPK13__nv_bfloat16PKfS3_PKbfPfPbS8_ii:
+  REG:255 STACK:40 SHARED:33024 LOCAL:0 CONSTANT[0]:424 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b22full64_pipeline_kernelILi4EEEvPK13__nv_bfloat16PKfS3_Pfii:
+  REG:255 STACK:0 SHARED:32768 LOCAL:0 CONSTANT[0]:392 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b22full64_pipeline_kernelILi1EEEvPK13__nv_bfloat16PKfS3_Pfii:
+  REG:255 STACK:0 SHARED:32768 LOCAL:0 CONSTANT[0]:392 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b22full64_pipeline_kernelILi0EEEvPK13__nv_bfloat16PKfS3_Pfii:
+  REG:255 STACK:32 SHARED:32768 LOCAL:0 CONSTANT[0]:392 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b26full64_sync_variant_kernelILi128ELb1ELb1EEEvPK13__nv_bfloat16PKfS3_Pfi:
+  REG:56 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b26full64_sync_variant_kernelILi128ELb1ELb0EEEvPK13__nv_bfloat16PKfS3_Pfi:
+  REG:72 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b26full64_sync_variant_kernelILi136ELb0ELb1EEEvPK13__nv_bfloat16PKfS3_Pfi:
+  REG:56 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b26full64_sync_variant_kernelILi136ELb0ELb0EEEvPK13__nv_bfloat16PKfS3_Pfi:
+  REG:72 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b26full64_sync_variant_kernelILi128ELb0ELb1EEEvPK13__nv_bfloat16PKfS3_Pfi:
+  REG:56 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b26full64_sync_variant_kernelILi128ELb0ELb0EEEvPK13__nv_bfloat16PKfS3_Pfi:
+  REG:72 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b23select_threshold_kernelEPKfPKbfPbi:
+  REG:12 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b15h56_pass_kernelEPK13__nv_bfloat16PKfS2_PKbS4_Pfi:
+  REG:88 STACK:0 SHARED:16384 LOCAL:0 CONSTANT[0]:404 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b14h8_pass_kernelEPK13__nv_bfloat16PKfS2_PfS5_i:
+  REG:48 STACK:0 SHARED:16640 LOCAL:0 CONSTANT[0]:396 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b24fused_online_sync_kernelEPK13__nv_bfloat16PKfS2_PKbfPfPbS7_i:
+  REG:72 STACK:0 SHARED:16640 LOCAL:0 CONSTANT[0]:420 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b22fused_mask_sync_kernelEPK13__nv_bfloat16PKfS2_PKbPfS7_i:
+  REG:64 STACK:0 SHARED:16384 LOCAL:0 CONSTANT[0]:404 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b18full64_sync_kernelEPK13__nv_bfloat16PKfS2_Pfi:
+  REG:78 STACK:0 SHARED:16384 LOCAL:0 CONSTANT[0]:388 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _ZN43_GLOBAL__N__e92114f8_10_kernels_cu_774b120b14pack_qw_kernelEPK13__nv_bfloat16PKfPKibPS0_PfPi:
+  REG:22 STACK:0 SHARED:512 LOCAL:0 CONSTANT[0]:408 TEXTURE:0 SURFACE:0 SAMPLER:0
+
+Fatbin ptx code:
+================
+arch = sm_89
+code version = [8,7]
+host = linux
+compile_size = 64bit
+compressed
+identifier = /home/psa1582/temporal-dsa-pilot/cuda/fused_h8_sm89/kernels.cu
+ptxasOptions = -v  --generate-line-info

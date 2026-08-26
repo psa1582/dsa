@@ -1,0 +1,20 @@
+{
+  "compile_target": "-arch=sm_89",
+  "block_size": 64,
+  "tensor_core_instruction": "mma.sync.aligned.m16n8k16.row.col.f32.bf16.bf16.f32",
+  "k2": {
+    "ctas_per_sm": 2,
+    "producer_warps": 0
+  },
+  "k6": {
+    "ctas_per_sm": 1,
+    "producer_warps": 4
+  },
+  "local_threshold_layer17": -1.7639244688110987,
+  "mask_pool_sizes": {
+    "8192": 127,
+    "16384": 127,
+    "32768": 127
+  },
+  "effective_full_baseline": "min(K1_sync,K2_pipeline), disclosed per context"
+}

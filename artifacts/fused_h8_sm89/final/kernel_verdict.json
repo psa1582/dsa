@@ -1,0 +1,86 @@
+{
+  "verdict": "NO-GO",
+  "go": false,
+  "reason": "Deployable K6 is slower than the fastest optimized full64 baseline in cold-cache 16K and 32K.",
+  "primary_cold_cache": {
+    "8192": {
+      "K1_us": 20.479999482631683,
+      "K2_us": 23.552000522613525,
+      "effective_full_us": 20.479999482631683,
+      "K6_us": 22.52800017595291,
+      "K4_us": 23.552000522613525,
+      "K3_us": 25.599999353289604,
+      "K6_speedup_vs_K2": 1.0454545604875156,
+      "K6_speedup_vs_effective_full": 0.9090908790249688,
+      "K4_speedup_vs_K3": 1.0869564701609822
+    },
+    "16384": {
+      "K1_us": 25.599999353289604,
+      "K2_us": 29.69600073993206,
+      "effective_full_us": 25.599999353289604,
+      "K6_us": 30.719999223947525,
+      "K4_us": 27.648000046610832,
+      "K3_us": 30.719999223947525,
+      "K6_speedup_vs_K2": 0.966666715173052,
+      "K6_speedup_vs_effective_full": 0.8333333333333334,
+      "K4_speedup_vs_K3": 1.1111110811688987
+    },
+    "32768": {
+      "K1_us": 33.79200026392937,
+      "K2_us": 45.05600035190582,
+      "effective_full_us": 33.79200026392937,
+      "K6_us": 38.91199827194214,
+      "K4_us": 35.840000957250595,
+      "K3_us": 38.91199827194214,
+      "K6_speedup_vs_K2": 1.1578947973071296,
+      "K6_speedup_vs_effective_full": 0.8684210979803473,
+      "K4_speedup_vs_K3": 1.0857142085000437
+    }
+  },
+  "dataflow_fusion": {
+    "K4_vs_K3_speedup_16k": 1.1111110811688987,
+    "K4_vs_K3_speedup_32k": 1.0857142085000437,
+    "dram_read_bytes_K3_32k": 15333376.000000002,
+    "dram_read_bytes_K4_32k": 9291904.0,
+    "dram_read_reduction": 0.3940079471083212,
+    "claim_scope": "DATAFLOW-ONLY / PRECOMPUTED-MASK"
+  },
+  "deployable_K6_profile_32k": {
+    "dram_read_bytes": 9452928.0,
+    "l2_hit_rate_pct": 31.255909,
+    "tensor_pipe_active_pct": 4.510856,
+    "achieved_occupancy_pct": 16.527905,
+    "registers_per_thread_max": 255.0,
+    "barrier_stall_per_issue": 7.175219,
+    "long_scoreboard_stall_per_issue": 3.87524
+  },
+  "quality": {
+    "P0_qk_reduction": 0.2072201929,
+    "P0_mla_rell2_p95": 0.02595770266,
+    "P0_ppl_delta": -0.004953957736,
+    "P1_actual_promotion_rate": 0.2935971497616215,
+    "P1_qk_reduction": 0.1398273473626906,
+    "P1_mla_rell2_p95": 0.0261291960254311,
+    "P1_ppl_delta": -0.0044188011267813,
+    "P1_closed_loop_task_success": 0.5833333333333334
+  },
+  "topk_integration": [
+    {
+      "status": "SKIPPED_BY_EARLY_STOP",
+      "reason": "K6 scoring did not reach 1.05x versus fastest optimized full baseline",
+      "context": 16384,
+      "scoring_speedup_vs_fastest_full": 0.8333333333,
+      "scoring_plus_topk_speedup": null,
+      "sidecar_tpot_impact": null
+    },
+    {
+      "status": "SKIPPED_BY_EARLY_STOP",
+      "reason": "K6 scoring did not reach 1.05x versus fastest optimized full baseline",
+      "context": 32768,
+      "scoring_speedup_vs_fastest_full": 0.868421098,
+      "scoring_plus_topk_speedup": null,
+      "sidecar_tpot_impact": null
+    }
+  ],
+  "next_direction": "Compact K-sketch/traffic pruning or a dedicated progressive datapath; do not integrate this K6 software kernel."
+}

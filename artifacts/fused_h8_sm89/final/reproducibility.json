@@ -1,0 +1,17 @@
+{
+  "command": "scripts/benchmark_fused_h8_sm89.py --repo /home/psa1582/temporal-dsa-pilot --output /home/psa1582/temporal-dsa-pilot/artifacts/fused_h8_sm89/run_20260826_sm89",
+  "started_unix": 1787738737.6469243,
+  "elapsed_seconds": 136.57170963287354,
+  "seed": 1582,
+  "warmup": 100,
+  "measurements": 1000,
+  "timing": "CUDA events; flush outside timed interval",
+  "cold_cache": "402653184 byte flush buffer (4x detected L2)",
+  "trace_rotation": [
+    "code_heldout_3",
+    "text_heldout_28444",
+    "code_heldout_5"
+  ],
+  "mask_protocol": "127-step trace-detail/replay-count reconstructed masks when available",
+  "quality_source": "locked prior P0/P1 replay artifacts; CUDA mathematical equivalence rechecked"
+}
