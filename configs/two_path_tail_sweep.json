@@ -1,0 +1,30 @@
+{
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "seed": 1582,
+  "sweeps": [
+    {
+      "block_size": 64,
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fractions": [0.01, 0.02, 0.05, 0.1],
+      "strategies": [
+        {"label": "dynamic_abs", "strategy": "high_weight"},
+        {"label": "dynamic_pos", "strategy": "positive_weight"}
+      ],
+      "widths": [2, 4, 8, 16]
+    },
+    {
+      "block_size": 64,
+      "path": "dim",
+      "precision": "bf16",
+      "rescue_fractions": [0.01, 0.02, 0.05, 0.1],
+      "seed": 1582,
+      "strategies": [
+        {"label": "random", "rotation": "none", "strategy": "random_fixed"},
+        {"label": "had_random", "rotation": "hadamard", "strategy": "random_fixed"},
+        {"label": "had_even", "rotation": "hadamard", "strategy": "evenly_spaced"}
+      ],
+      "widths": [4, 8, 16, 32]
+    }
+  ]
+}

@@ -8,6 +8,11 @@ def test_stable_topk_uses_index_tie_break() -> None:
     assert stable_topk(values, 2).tolist() == [1, 2]
 
 
+def test_stable_topk_resolves_large_cutoff_tie_by_global_index() -> None:
+    values = np.ones(64, dtype=np.float32)
+    assert np.array_equal(stable_topk(values, 8), np.arange(8))
+
+
 def test_recall_and_random_normalization() -> None:
     assert topk_recall(np.array([1, 2]), np.array([2, 3])) == 0.5
     assert normalized_recall_lift(0.5, 2, 4) == 0.0
@@ -15,4 +20,3 @@ def test_recall_and_random_normalization() -> None:
 
 def test_spearman_perfect_monotone() -> None:
     assert np.isclose(spearman(np.array([1, 2, 3]), np.array([10, 20, 30])), 1.0)
-

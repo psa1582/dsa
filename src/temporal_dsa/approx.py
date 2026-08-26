@@ -354,6 +354,11 @@ def replay_step(
         "approximate": approximate,
         "baseline": baseline,
         "evaluated": scored,
+        # Runtime-visible masks used by the optional current-query verifier.
+        # These expose decisions, not skipped current scores.
+        "seed": seed.copy(),
+        "refreshed_blocks": np.flatnonzero(refreshed).astype(np.int32),
+        "skipped_blocks": np.flatnonzero(skipped).astype(np.int32),
         "missed_ranks": missed_rank.astype(np.int32),
     }
     return next_state, metrics, details

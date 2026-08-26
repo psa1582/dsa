@@ -1,0 +1,26 @@
+{
+  "configs": [
+    {
+      "block_size": 64,
+      "name": "head_h8_high_weight_b64_r5",
+      "path": "head",
+      "precision": "bf16",
+      "rescue_fraction": 0.05,
+      "strategy": "high_weight",
+      "width": 8
+    },
+    {
+      "block_size": 64,
+      "name": "dim_d16_random_b64_r5",
+      "path": "dim",
+      "precision": "bf16",
+      "rescue_fraction": 0.05,
+      "rotation": "none",
+      "seed": 1582,
+      "strategy": "random_fixed",
+      "width": 16
+    }
+  ],
+  "scope": "Research sidecar DSA on DeepSeek-V2-Lite",
+  "seed": 1582
+}

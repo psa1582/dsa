@@ -13,7 +13,12 @@ def stable_topk(values: np.ndarray, k: int) -> np.ndarray:
         raise ValueError(f"expected a vector, got {x.shape}")
     if not 0 < k <= x.size:
         raise ValueError(f"k={k} is invalid for {x.size} values")
-    candidate = np.argpartition(x, x.size - k)[-k:]
+    # ``argpartition`` is unstable at the cutoff.  Sorting its arbitrary tie
+    # subset afterwards does not provide a deterministic global-index tie-break.
+    cutoff = np.partition(x, x.size - k)[x.size - k]
+    greater = np.flatnonzero(x > cutoff)
+    equal = np.flatnonzero(x == cutoff)
+    candidate = np.concatenate((greater, equal[: k - greater.size]))
     return candidate[np.lexsort((candidate, -x[candidate]))]
 
 
@@ -76,4 +81,3 @@ def distribution(values: Iterable[float]) -> dict[str, float]:
         "p75": float(np.percentile(x, 75)),
         "p95": float(np.percentile(x, 95)),
     }
-
